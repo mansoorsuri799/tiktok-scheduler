@@ -6,13 +6,13 @@ import CtaButton from "@/components/CtaButton";
 import { BRAND_LOGO, CONTACT_EMAIL, SITE_DOMAIN, SITE_NAME, SITE_ORIGIN } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
-  title: "About BMI Calculator Women",
+  title: "About TikTok Scheduler",
   description:
-    "Learn why BMI Calculator Women exists: a free female BMI tool, women’s chart, healthy ranges, and clear educational guides.",
+    "About TikTok Scheduler on tiktokscheduler.net — a focused tool and SERP-backed guides for planning and publishing TikTok videos.",
   alternates: { canonical: `${SITE_ORIGIN}/about-us` },
   openGraph: {
-    title: "About BMI Calculator Women",
-    description: `Independent educational BMI tools for women on ${SITE_DOMAIN}.`,
+    title: "About TikTok Scheduler",
+    description: `Independent TikTok scheduling product and guides on ${SITE_DOMAIN}.`,
     url: `${SITE_ORIGIN}/about-us`,
     siteName: SITE_NAME,
     type: "website",
@@ -24,10 +24,10 @@ export default function AboutPage() {
     <div className="container mx-auto max-w-4xl px-4 py-10">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us" }]} />
       <div className="mb-10 flex flex-col items-start gap-8 md:flex-row">
-        <div className="relative h-40 w-40 flex-shrink-0 overflow-hidden rounded-2xl border border-brand/15 bg-white">
+        <div className="relative h-40 w-40 flex-shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
           <Image
             src={BRAND_LOGO}
-            alt="BMI Calculator Women logo"
+            alt="TikTok Scheduler logo"
             fill
             sizes="160px"
             className="object-contain p-3"
@@ -35,51 +35,52 @@ export default function AboutPage() {
           />
         </div>
         <div>
-          <h1 className="mb-4 font-display text-3xl font-bold text-brand md:text-4xl">
+          <h1 className="mb-4 font-display text-3xl font-bold text-white md:text-4xl">
             About {SITE_NAME}
           </h1>
-          <p className="mb-4 leading-relaxed text-ink">
-            {SITE_NAME} is an independent educational site at {SITE_DOMAIN}. We built a free BMI
-            calculator for women so anyone can check body mass index, WHO category, and healthy
-            weight range — without creating an account.
+          <p className="mb-4 leading-relaxed text-white/80">
+            {SITE_NAME} is an independent product at {SITE_DOMAIN}. We help creators and brands plan
+            TikTok videos, fill a content calendar, and auto-publish at times when audiences are
+            actually online.
           </p>
-          <p className="leading-relaxed text-ink">
-            Our guides cover women&apos;s BMI charts, healthy ranges, age notes, formulas, and
-            height–weight tables. Everything is educational; confirm important health decisions with
-            a clinician.
+          <p className="leading-relaxed text-white/80">
+            Alongside the product we publish only high-intent guides — how to schedule posts, best
+            times, content calendars, and how native TikTok scheduling compares to dedicated tools.
           </p>
         </div>
       </div>
 
       <section className="mb-10">
-        <h2 className="mb-3 font-display text-2xl font-bold text-brand">What we publish</h2>
-        <ul className="space-y-3 text-ink">
-          <li className="rounded-2xl border border-brand/15 bg-white p-4">
-            A working BMI calculator for women with imperial and metric units
+        <h2 className="mb-3 font-display text-2xl font-bold text-white">What we publish</h2>
+        <ul className="space-y-3 text-white/80">
+          <li className="border border-white/10 bg-white/5 p-4">
+            A TikTok scheduler with queue, calendar, and auto-publish
           </li>
-          <li className="rounded-2xl border border-brand/15 bg-white p-4">
-            BMI chart women, healthy BMI, and BMI-by-age hub pages
+          <li className="border border-white/10 bg-white/5 p-4">
+            Features, how-it-works, and pricing pages for product intent
           </li>
-          <li className="rounded-2xl border border-brand/15 bg-white p-4">
-            SERP-driven articles on calculating BMI, meaning, formula, and height–weight charts
+          <li className="border border-white/10 bg-white/5 p-4">
+            SERP-backed articles chosen from live search demand — not filler blogs
           </li>
         </ul>
       </section>
 
       <section className="mb-10">
-        <h2 className="mb-3 font-display text-2xl font-bold text-brand">Contact</h2>
-        <p className="mb-4 leading-relaxed text-ink">
-          Questions or corrections:{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-brand underline hover:no-underline">
+        <h2 className="mb-3 font-display text-2xl font-bold text-white">Contact</h2>
+        <p className="mb-4 leading-relaxed text-white/80">
+          Questions or partnerships:{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="text-violet-soft underline hover:no-underline">
             {CONTACT_EMAIL}
           </a>{" "}
           or our{" "}
-          <Link href="/contact-us" className="text-brand underline hover:no-underline">
+          <Link href="/contact-us" className="text-violet-soft underline hover:no-underline">
             contact page
           </Link>
           .
         </p>
-        <CtaButton href="/#calculator">TRY THE CALCULATOR</CtaButton>
+        <CtaButton href="/#start" ariaLabel="Start using TikTok Scheduler">
+          START SCHEDULING
+        </CtaButton>
       </section>
     </div>
   );

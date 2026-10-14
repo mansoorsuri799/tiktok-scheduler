@@ -4,7 +4,7 @@ import { CONTACT_EMAIL, SITE_NAME, SITE_ORIGIN } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
-  description: `Educational disclaimer for ${SITE_NAME} BMI estimates and women’s health guides.`,
+  description: `Product and content disclaimer for ${SITE_NAME} scheduling guides and software.`,
   alternates: { canonical: `${SITE_ORIGIN}/disclaimer` },
 };
 
@@ -12,30 +12,29 @@ export default function DisclaimerPage() {
   return (
     <div className="container mx-auto max-w-3xl px-4 py-10">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Disclaimer" }]} />
-      <h1 className="mb-6 font-display text-3xl font-bold text-brand">Disclaimer</h1>
-      <div className="space-y-5 leading-relaxed text-ink">
+      <h1 className="mb-6 font-display text-3xl font-bold text-white">Disclaimer</h1>
+      <div className="space-y-5 leading-relaxed text-white/80">
         <p>
-          {SITE_NAME} provides educational calculators and articles about body mass index (BMI),
-          women’s BMI charts, healthy weight ranges, and related formulas. Nothing on this site is
-          medical, dietary, or clinical advice.
+          {SITE_NAME} provides software and educational articles about scheduling TikTok posts,
+          posting times, and content calendars. Nothing on this site guarantees views, followers,
+          revenue, or algorithmic outcomes.
         </p>
         <p>
-          BMI depends on the height and weight you enter and uses simplified published formulas. It
-          does not measure body fat directly. Pregnancy, high muscle mass, edema, age, and ethnicity
-          guidelines can change interpretation. Always consult a qualified professional before making
-          health decisions.
+          TikTok is a trademark of its respective owners. {SITE_NAME} is an independent product and
+          is not affiliated with, endorsed by, or sponsored by TikTok or ByteDance unless explicitly
+          stated. Platform features, APIs, and account requirements can change without notice.
         </p>
         <p>
-          We are not affiliated with WHO, CDC, NHLBI, or any clinical device manufacturer. Links to
-          external resources are for convenience only.
+          Scheduling depends on account permissions, API availability, and your content complying
+          with TikTok’s Community Guidelines. Always review posts before they go live.
         </p>
         <p>
           Questions:{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-brand underline hover:no-underline">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="text-violet-soft underline hover:no-underline">
             {CONTACT_EMAIL}
           </a>
         </p>
-        <p className="text-sm text-ink/70">Last updated: October 11, 2026</p>
+        <p className="text-sm text-white/55">Last updated: October 14, 2026</p>
       </div>
     </div>
   );

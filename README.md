@@ -1,6 +1,6 @@
-# BMI Calculator Women
+# TikTok Scheduler
 
-Free BMI calculator for women at [bmicalculatorwomen.io](https://bmicalculatorwomen.io) — WHO categories, healthy weight range, women’s BMI chart, and age-aware guidance.
+Brand site for [tiktokscheduler.net](https://tiktokscheduler.net) — plan, schedule, and auto-publish TikTok videos with a creator-ready content calendar.
 
 ## Stack
 

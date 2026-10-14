@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 26, 18, 37;
-  --background-start-rgb: 251, 244, 248;
-  --background-end-rgb: 255, 255, 255;
-  --accent: #ff7a7a;
-  --brand: #1a1225;
-  --pink: #ff7a9a;
-  --lilac: #c9a0dc;
+  --foreground-rgb: 244, 240, 255;
+  --background-start-rgb: 15, 11, 36;
+  --background-end-rgb: 9, 6, 26;
+  --accent: #7b5cff;
+  --brand: #0f0b24;
+  --pink: #ff4f7b;
+  --violet: #7b5cff;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #fff7fb;
+  background: #0f0b24;
 }
 
 img {
@@ -61,16 +61,30 @@ footer {
 }
 
 .site-atmosphere {
-  background-color: #fff7fb;
+  background-color: #0f0b24;
   background-image:
-    radial-gradient(ellipse 85% 55% at 8% -8%, rgba(255, 122, 154, 0.22), transparent 55%),
-    radial-gradient(ellipse 75% 50% at 92% 0%, rgba(201, 160, 220, 0.28), transparent 52%),
-    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(255, 122, 122, 0.12), transparent 55%),
-    linear-gradient(180deg, #fbf0f6 0%, #fff7fb 32%, #ffffff 72%);
+    radial-gradient(ellipse 90% 60% at 12% -10%, rgba(123, 92, 255, 0.35), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 90% 0%, rgba(255, 79, 123, 0.28), transparent 52%),
+    radial-gradient(ellipse 70% 45% at 50% 110%, rgba(123, 92, 255, 0.18), transparent 55%),
+    linear-gradient(180deg, #120c2a 0%, #0f0b24 40%, #09061a 100%);
 }
 
 .hero-glow {
   animation: float-glow 8s ease-in-out infinite;
+}
+
+.brand-gradient-text {
+  background: linear-gradient(120deg, #a894ff 0%, #ff4f7b 55%, #7b5cff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 a {

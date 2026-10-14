@@ -28,18 +28,18 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <>
       <nav aria-label="Breadcrumb" className="mb-6">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-brand/70">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-white/60">
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             return (
               <li key={`${item.label}-${index}`} className="flex items-center gap-2">
-                {index > 0 ? <span className="text-pink/70" aria-hidden="true">/</span> : null}
+                {index > 0 ? <span className="text-violet/70" aria-hidden="true">/</span> : null}
                 {isLast || !item.href ? (
-                  <span className="font-semibold text-brand" aria-current="page">
+                  <span className="font-semibold text-white" aria-current="page">
                     {item.label}
                   </span>
                 ) : (
-                  <Link href={item.href} className="text-pink-deep underline hover:no-underline">
+                  <Link href={item.href} className="text-violet-soft underline hover:no-underline">
                     {item.label}
                   </Link>
                 )}

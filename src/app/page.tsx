@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import BmiCalculator from "@/components/BmiCalculator";
 import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
 import { WEB_APPLICATION_JSON_LD } from "@/lib/appFacts";
 import { imageObjectLicensing } from "@/lib/schemaImageLicensing";
 import {
-  BRAND_CHART,
+  BRAND_FEATURE_2,
+  BRAND_FEATURE_3,
   BRAND_HERO,
   BRAND_LOGO,
   OG_IMAGE,
@@ -18,16 +18,16 @@ import {
 
 export const metadata: Metadata = {
   title: {
-    default: "BMI Calculator Women — Free Female BMI Tool & Chart",
+    default: "TikTok Scheduler — Plan & Auto-Publish TikTok Videos",
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Free BMI calculator for women. Get your body mass index, WHO category, and healthy weight range in seconds — metric or imperial, no signup.",
+    "TikTok Scheduler helps creators and brands plan, queue, and auto-publish TikTok videos at the best times — desktop-friendly content calendar included.",
   alternates: { canonical: SITE_ORIGIN },
   openGraph: {
-    title: "BMI Calculator Women — Free Female BMI Tool & Chart",
+    title: "TikTok Scheduler — Plan & Auto-Publish TikTok Videos",
     description:
-      "Calculate BMI for women with instant categories, healthy weight range, and a women’s BMI chart. Free and private.",
+      "Schedule TikTok posts in advance, batch your queue, and publish when your audience is online.",
     url: SITE_ORIGIN,
     siteName: SITE_NAME,
     type: "website",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "BMI Calculator Women homepage tool preview",
+        alt: "TikTok Scheduler homepage — plan and publish TikTok videos",
       },
     ],
   },
@@ -44,29 +44,29 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: "How does this BMI calculator for women work?",
+    question: "What is TikTok Scheduler?",
     answer:
-      "Enter age, height, and weight in metric or imperial units. The tool uses the standard WHO adult formula (weight ÷ height²) and maps your result to underweight, healthy weight, overweight, or obesity classes.",
+      "TikTok Scheduler is a web tool for planning TikTok videos ahead of time. Upload clips, set captions, pick publish times, and auto-publish so you stay consistent without living in the TikTok app.",
   },
   {
-    question: "Is BMI different for women than men?",
+    question: "Can I schedule TikTok posts for free?",
     answer:
-      "The adult BMI formula and WHO cut-offs are the same for women and men. Interpretation can differ because women typically carry more essential fat, and age, muscle mass, pregnancy, and waist size add important context.",
+      "Yes. TikTok Scheduler includes a free plan to queue posts and learn the workflow. Paid plans unlock more scheduled posts, bulk uploads, and team seats — see Pricing for current limits.",
   },
   {
-    question: "What is a healthy BMI for women?",
+    question: "Does scheduling hurt TikTok reach?",
     answer:
-      "For most adult women, a BMI between 18.5 and 24.9 is labeled healthy weight on the WHO chart. Athletes, older adults, and people who are pregnant need individualized guidance from a clinician.",
+      "Scheduling itself does not hurt reach when you publish through approved APIs and post at times your audience is active. Consistency and creative quality matter more than tapping Post manually every time.",
   },
   {
-    question: "Should I use metric or imperial units?",
+    question: "Do I need a TikTok Business or Creator account?",
     answer:
-      "Either works. Choose US (lb/in) or metric (kg/cm) at the top of the calculator — helpful if you are in the United States or prefer kilograms and centimeters.",
+      "Most scheduling features work with Professional (Creator or Business) accounts that allow third-party publishing. Connect your account on the start flow and we will confirm what your account type supports.",
   },
   {
-    question: "Why look at BMI and a chart together?",
+    question: "How is this different from TikTok’s native Video Scheduler?",
     answer:
-      "A single number is easier to track over time. The women’s BMI chart and healthy weight range show how that number sits for your height, which answers “how much should I weigh?” more clearly.",
+      "TikTok’s built-in scheduler is useful for short windows inside Studio. TikTok Scheduler adds a fuller content calendar, longer planning horizon, bulk queueing, and guides for best posting times — see our native vs tool comparison guide.",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function Home() {
         url: `${SITE_ORIGIN}/`,
         name: SITE_NAME,
         description:
-          "Free BMI calculator for women with WHO categories and healthy weight range.",
+          "Plan, schedule, and auto-publish TikTok videos with a content calendar built for creators.",
         inLanguage: "en-US",
         publisher: { "@id": `${SITE_ORIGIN}/#organization` },
       },
@@ -88,58 +88,46 @@ export default function Home() {
         "@type": "WebPage",
         "@id": `${SITE_ORIGIN}/#webpage`,
         url: `${SITE_ORIGIN}/`,
-        name: "BMI Calculator Women — Free Female BMI Tool & Chart",
+        name: "TikTok Scheduler — Plan & Auto-Publish TikTok Videos",
         isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
         primaryImageOfPage: {
           "@type": "ImageObject",
-          url: `${SITE_ORIGIN}${BRAND_LOGO}`,
-          width: 512,
-          height: 512,
-          ...imageObjectLicensing,
-        },
-      },
-      {
-        "@type": "Organization",
-        "@id": `${SITE_ORIGIN}/#organization`,
-        name: SITE_NAME,
-        url: `${SITE_ORIGIN}/`,
-        logo: {
-          "@type": "ImageObject",
-          url: `${SITE_ORIGIN}${BRAND_LOGO}`,
-          width: 512,
-          height: 512,
+          url: `${SITE_ORIGIN}${BRAND_HERO}`,
+          width: 1600,
+          height: 900,
           ...imageObjectLicensing,
         },
       },
       {
         ...WEB_APPLICATION_JSON_LD,
-        "@id": `${SITE_ORIGIN}/#webapp`,
+        "@id": `${SITE_ORIGIN}/#software`,
+        description:
+          "Web-based TikTok post scheduler with queue, calendar, and auto-publish.",
       },
       {
         "@type": "HowTo",
-        name: "How to calculate BMI for women",
-        description:
-          "Calculate body mass index with height and weight using the WHO adult formula.",
+        name: "How to schedule TikTok posts with TikTok Scheduler",
+        description: "Connect your account, queue videos, and publish on a schedule.",
         step: [
           {
             "@type": "HowToStep",
-            name: "Choose units",
-            text: "Select imperial (lb/in) or metric (kg/cm).",
+            name: "Connect TikTok",
+            text: "Sign in and securely connect your Professional TikTok account.",
           },
           {
             "@type": "HowToStep",
-            name: "Enter age, height, and weight",
-            text: "Add your current measurements. Sex defaults to female on this women’s tool.",
+            name: "Upload and caption",
+            text: "Add videos, write captions and hashtags, then preview the post.",
           },
           {
             "@type": "HowToStep",
-            name: "Calculate BMI",
-            text: "Press Calculate BMI to see your index, category, and healthy weight range.",
+            name: "Pick a time",
+            text: "Choose a date and time — or use recommended peak windows for your audience.",
           },
           {
             "@type": "HowToStep",
-            name: "Read the chart",
-            text: "Compare your result with the women’s BMI scale and category bands.",
+            name: "Auto-publish",
+            text: "Save to the queue. TikTok Scheduler publishes when the slot arrives.",
           },
         ],
       },
@@ -153,220 +141,188 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      <div className="container mx-auto px-3 pt-4 pb-16 sm:px-4 sm:pt-5 md:pt-6 lg:max-w-7xl">
-        <section className="mb-10 md:mb-14">
-          <div className="mb-4 max-w-3xl animate-fade-up sm:mb-5">
-            <p className="mb-2 font-display text-sm font-semibold uppercase tracking-[0.18em] text-pink">
-              BMI Calculator Women
-            </p>
-            <h1 className="font-display text-[1.65rem] font-bold leading-tight text-brand sm:text-4xl md:text-5xl">
-              Know your BMI in seconds
-            </h1>
-            <p className="mt-2 text-sm leading-snug text-ink/80 sm:mt-3 sm:text-base md:text-lg">
-              Free BMI calculator for women with WHO categories, a healthy weight range for your
-              height, and a clear women&apos;s BMI chart — metric or imperial, no signup.
-            </p>
-            <p className="mt-1.5 hidden text-sm font-medium text-brand/80 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5">
-              <span>{SITE_RATING.ratingValue}</span>
-              <span className="tracking-tight text-gold" aria-hidden="true">
-                ★★★★☆
-              </span>
-              <span>
-                ({Number(SITE_RATING.ratingCount).toLocaleString()}) · Free · Web · Health
-              </span>
-            </p>
+      {/* Hero — one composition: brand, headline, support, CTA, full-bleed visual */}
+      <section className="relative min-h-[88vh] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={BRAND_HERO}
+            alt="TikTok Scheduler dashboard for planning and publishing TikTok videos"
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand via-brand/85 to-brand/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand via-transparent to-brand/50" />
+          <div className="hero-glow pointer-events-none absolute -left-20 top-10 h-64 w-64 rounded-full bg-violet/40 blur-3xl" />
+          <div className="hero-glow pointer-events-none absolute -right-10 bottom-20 h-72 w-72 rounded-full bg-pink/30 blur-3xl" style={{ animationDelay: "1.5s" }} />
+        </div>
+
+        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
+          <p className="mb-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl animate-fade-up">
+            <span className="brand-gradient-text">{SITE_NAME}</span>
+          </p>
+          <h1 className="mb-5 max-w-2xl font-display text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl animate-fade-up" style={{ animationDelay: "80ms" }}>
+            Plan TikTok videos once. Publish when your audience is ready.
+          </h1>
+          <p className="mb-8 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg animate-fade-up" style={{ animationDelay: "140ms" }}>
+            Queue posts, build a content calendar, and auto-publish TikToks at peak times — without juggling drafts in the mobile app.
+          </p>
+          <div id="start" className="flex flex-wrap items-center gap-4 animate-fade-up" style={{ animationDelay: "200ms" }}>
+            <CtaButton href="/pricing" ariaLabel="Start scheduling with TikTok Scheduler" icon="play">
+              START SCHEDULING
+            </CtaButton>
+            <Link
+              href="/how-it-works"
+              className="text-sm font-semibold text-violet-soft underline-offset-4 hover:underline"
+            >
+              See how it works →
+            </Link>
           </div>
+          <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-white/70 animate-fade-up" style={{ animationDelay: "260ms" }}>
+            <span className="inline-flex items-center gap-1.5" aria-label={`Rated ${SITE_RATING.ratingValue} out of 5`}>
+              <span className="font-semibold text-gold">{SITE_RATING.ratingValue}</span>
+              <span className="tracking-tight text-gold" aria-hidden="true">★★★★★</span>
+              <span>({Number(SITE_RATING.ratingCount).toLocaleString()})</span>
+            </span>
+            <span className="text-white/40">·</span>
+            <span>Free plan</span>
+            <span className="text-white/40">·</span>
+            <span>Web</span>
+            <span className="text-white/40">·</span>
+            <span>Creators & brands</span>
+          </div>
+        </div>
+      </section>
 
-          <BmiCalculator />
-        </section>
-
-        <article className="max-w-4xl">
-          <section id="what-is-bmi-calculator-women" className="mb-14">
-            <h2 className="mb-4 font-display text-2xl font-bold text-brand md:text-3xl">
-              What this BMI calculator for women shows you
-            </h2>
-            <p className="mb-4 leading-relaxed text-ink">
-              Body mass index (BMI) estimates how your weight relates to your height. This{" "}
-              <strong className="font-semibold text-brand">BMI calculator women</strong> tool turns
-              those two numbers into a clear index, a WHO category, and the healthy weight band for
-              your height — so you can answer “what is my BMI?” without doing the math by hand.
-            </p>
-            <p className="mb-4 leading-relaxed text-ink">
-              Searches for BMI calculator female, BMI calculator for women, and BMI chart women all
-              point to the same need: a fast, trustworthy result with women-focused explanation. We
-              default to female inputs, highlight women’s chart ranges, and note when age or life
-              stage changes how you should read the number.
-            </p>
-            <p className="mb-6 leading-relaxed text-ink">
-              Want the visual table first? Open the{" "}
-              <Link href="/bmi-chart-women" className="font-medium text-brand underline hover:no-underline">
-                BMI chart for women
-              </Link>
-              .
-            </p>
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-brand/15 bg-mist">
+      <div className="container mx-auto max-w-6xl px-4 py-16">
+        <section className="mb-20">
+          <h2 className="mb-4 font-display text-2xl font-bold text-white md:text-3xl">
+            Why creators use a TikTok post scheduler
+          </h2>
+          <p className="mb-10 max-w-3xl text-lg leading-relaxed text-white/80">
+            Posting every day is hard when inspiration hits at midnight and your audience wakes at 7 a.m.
+            A dedicated <strong className="font-semibold text-white">TikTok scheduler</strong> turns
+            batch filming into a calm calendar — so growth comes from consistency, not last-minute taps.
+          </p>
+          <div className="grid gap-10 md:grid-cols-2 md:items-center">
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
               <Image
-                src={BRAND_HERO}
-                alt="BMI Calculator Women hero showing female body mass index tracking"
+                src={BRAND_FEATURE_2}
+                alt="TikTok Scheduler calendar view for queued video posts"
                 fill
-                sizes="(max-width: 768px) 100vw, 800px"
-                className="object-cover"
-                priority
-              />
-            </div>
-          </section>
-
-          <section id="how-to-use" className="mb-14">
-            <h2 className="mb-12 font-display text-2xl font-bold text-brand md:mb-16 md:text-3xl">
-              How to use this female BMI calculator
-            </h2>
-            <ol className="relative">
-              {(
-                [
-                  {
-                    step: "01",
-                    title: "Pick your units",
-                    body: "Use US pounds and inches or metric kilograms and centimeters. The formula result is the same either way.",
-                  },
-                  {
-                    step: "02",
-                    title: "Enter age, height, and weight",
-                    body: "Age adds context notes for teens and women over 40 or 65. Height and weight drive the BMI and healthy range.",
-                  },
-                  {
-                    step: "03",
-                    title: "Calculate and read your category",
-                    body: "See your BMI, WHO label, BMI Prime, and the healthy weight window for your height.",
-                  },
-                  {
-                    step: "04",
-                    title: "Compare with the women’s chart",
-                    body: "Use the on-page scale and our full BMI chart women page to see where you sit visually.",
-                  },
-                ] as const
-              ).map((item, index, list) => (
-                <li
-                  key={item.step}
-                  className="relative flex items-start gap-4 pb-12 last:pb-0 md:gap-6 md:pb-16"
-                >
-                  <div className="relative flex w-12 flex-shrink-0 flex-col items-center md:w-14">
-                    {index < list.length - 1 ? (
-                      <span
-                        aria-hidden="true"
-                        className="absolute bottom-[-3rem] left-1/2 top-10 w-px -translate-x-1/2 bg-brand/20 md:bottom-[-4rem] md:top-11"
-                      />
-                    ) : null}
-                    <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-pink bg-gradient-to-br from-blush to-white font-display text-sm font-bold text-brand md:h-11 md:w-11">
-                      {item.step}
-                    </span>
-                  </div>
-                  <div className="min-w-0 flex-1 pt-1.5 md:pt-2">
-                    <h3 className="font-display text-lg font-bold leading-snug tracking-tight text-brand md:text-xl">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 max-w-lg text-sm leading-relaxed text-ink/85 md:text-[15px]">
-                      {item.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          <section id="categories" className="mb-14">
-            <h2 className="mb-4 font-display text-2xl font-bold text-brand md:text-3xl">
-              BMI categories women use most
-            </h2>
-            <p className="mb-6 leading-relaxed text-ink">
-              Adult categories follow WHO cut-offs. They are population guides, not a personal
-              diagnosis. For healthy-range detail see{" "}
-              <Link href="/healthy-bmi" className="font-medium text-brand underline hover:no-underline">
-                healthy BMI for women
-              </Link>
-              , and for age notes see{" "}
-              <Link href="/bmi-by-age" className="font-medium text-brand underline hover:no-underline">
-                BMI by age
-              </Link>
-              .
-            </p>
-            <div className="relative aspect-[5/3] w-full overflow-hidden rounded-2xl border border-brand/15 bg-mist">
-              <Image
-                src={BRAND_CHART}
-                alt="BMI chart for women showing underweight through obesity class bands"
-                fill
-                sizes="(max-width: 768px) 100vw, 800px"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
-          </section>
-
-          <section id="related-guides" className="mb-14">
-            <h2 className="mb-4 font-display text-2xl font-bold text-brand md:text-3xl">
-              Related BMI guides people search for
-            </h2>
-            <ul className="grid gap-4 md:grid-cols-2">
+            <ul className="space-y-5 text-white/85">
               {[
                 {
-                  href: "/bmi-chart-women",
-                  title: "BMI chart women",
-                  body: "Height–weight table and category bands built for female searchers.",
+                  title: "Post at peak times",
+                  body: "Lock slots that match when your followers are online, then let auto-publish handle the rest.",
                 },
                 {
-                  href: "/blog/how-to-calculate-bmi",
-                  title: "How to calculate BMI",
-                  body: "Step-by-step math with metric and imperial examples.",
+                  title: "Batch once, publish all week",
+                  body: "Film in a single session, upload in bulk, and fill your TikTok content calendar without daily stress.",
                 },
                 {
-                  href: "/blog/what-is-bmi",
-                  title: "What is BMI?",
-                  body: "Plain-language BMI meaning, uses, and limits for women.",
-                },
-                {
-                  href: "/blog/height-and-weight-chart-for-women",
-                  title: "Height and weight chart",
-                  body: "Healthy weight ranges by height — “how much should I weigh?”",
+                  title: "Desktop-first workflow",
+                  body: "Write longer captions, organize hashtags, and preview posts on a full screen before they go live.",
                 },
               ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="block rounded-2xl border border-pink/20 bg-white/90 p-4 transition hover:border-pink/60 hover:shadow-[0_12px_30px_-20px_rgba(255,122,154,0.7)]"
-                  >
-                    <h3 className="font-display text-lg font-bold text-brand">{item.title}</h3>
-                    <p className="mt-2 text-sm text-ink/80">{item.body}</p>
+                <li key={item.title}>
+                  <h3 className="mb-1 font-display text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="leading-relaxed text-white/75">{item.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="mb-20">
+          <h2 className="mb-4 font-display text-2xl font-bold text-white md:text-3xl">
+            How TikTok Scheduler works
+          </h2>
+          <p className="mb-10 max-w-3xl text-white/80">
+            Four steps from draft to published — the same flow covered in our{" "}
+            <Link href="/how-it-works" className="text-violet-soft underline hover:no-underline">
+              how it works
+            </Link>{" "}
+            guide and the{" "}
+            <Link href="/blog/how-to-schedule-tiktok-posts" className="text-violet-soft underline hover:no-underline">
+              how to schedule TikTok posts
+            </Link>{" "}
+            article.
+          </p>
+          <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { n: "01", t: "Connect", d: "Link your Professional TikTok account securely." },
+              { n: "02", t: "Upload", d: "Add videos, captions, covers, and hashtags." },
+              { n: "03", t: "Schedule", d: "Pick exact times or suggested peak windows." },
+              { n: "04", t: "Publish", d: "Auto-publish from your queue when the slot hits." },
+            ].map((step) => (
+              <li key={step.n} className="border-t border-violet/40 pt-4">
+                <span className="font-display text-sm font-bold text-pink">{step.n}</span>
+                <h3 className="mt-2 font-display text-xl font-semibold text-white">{step.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">{step.d}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="mb-20 grid gap-10 md:grid-cols-2 md:items-center">
+          <div>
+            <h2 className="mb-4 font-display text-2xl font-bold text-white md:text-3xl">
+              Built for the searches that matter
+            </h2>
+            <p className="mb-6 leading-relaxed text-white/80">
+              People searching for a TikTok scheduler also want best posting times, content calendars,
+              and clarity on TikTok’s native Video Scheduler. We cover those intents in product pages
+              and SERP-backed guides — not filler blogs.
+            </p>
+            <ul className="space-y-3">
+              {[
+                { href: "/features", label: "Product features" },
+                { href: "/blog/best-time-to-post-on-tiktok", label: "Best time to post on TikTok" },
+                { href: "/blog/tiktok-content-calendar", label: "TikTok content calendar" },
+                { href: "/blog/does-tiktok-have-a-scheduler", label: "Does TikTok have a scheduler?" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="font-medium text-violet-soft hover:underline">
+                    {link.label} →
                   </Link>
                 </li>
               ))}
             </ul>
-          </section>
+          </div>
+          <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src={BRAND_FEATURE_3}
+              alt="TikTok Scheduler posting timeline and auto-publish queue"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+        </section>
 
-          <section id="assumptions" className="mb-14">
-            <h2 className="mb-4 font-display text-2xl font-bold text-brand md:text-3xl">
-              Assumptions and limitations
-            </h2>
-            <p className="leading-relaxed text-ink">
-              BMI does not measure body fat directly. High muscle mass, pregnancy, edema, certain
-              ethnic BMI thresholds, and under-18 growth charts can change what a “good” number means.
-              This site is educational — not a substitute for clinical advice. Pair BMI with waist
-              circumference and professional guidance when health decisions matter.
-            </p>
-          </section>
+        <FaqSection title="TikTok Scheduler FAQs" items={faqs} />
 
-          <FaqSection items={faqs} />
-
-          <section className="mt-16 rounded-2xl border border-pink/25 bg-gradient-to-br from-blush via-white to-lilac/20 p-8 text-center">
-            <h2 className="mb-3 font-display text-2xl font-bold text-brand">
-              Ready to check your BMI?
-            </h2>
-            <p className="mx-auto mb-6 max-w-2xl text-ink/85">
-              Jump back to the BMI calculator for women, adjust height or weight, and read your
-              category on the scale.
-            </p>
-            <CtaButton href="/#calculator" ariaLabel="Jump to BMI calculator for women">
-              BACK TO CALCULATOR
-            </CtaButton>
-          </section>
-        </article>
+        <section className="mt-16 border-t border-white/10 pt-12 text-center">
+          <div className="mx-auto mb-6 relative h-16 w-16">
+            <Image src={BRAND_LOGO} alt="" width={64} height={64} className="object-contain" />
+          </div>
+          <h2 className="mb-3 font-display text-2xl font-bold text-white md:text-3xl">
+            Ready to fill your TikTok calendar?
+          </h2>
+          <p className="mx-auto mb-8 max-w-xl text-white/75">
+            Start on the free plan, queue your next week of videos, and publish when engagement is highest.
+          </p>
+          <CtaButton href="/pricing" ariaLabel="View TikTok Scheduler pricing" icon="arrow">
+            VIEW PLANS
+          </CtaButton>
+        </section>
       </div>
     </>
   );

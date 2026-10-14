@@ -27,10 +27,10 @@ export const ORGANIZATION_JSON_LD = {
 };
 
 export const WEB_APPLICATION_JSON_LD = {
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   name: SITE_NAME,
   url: SITE_ORIGIN,
-  applicationCategory: "HealthApplication",
+  applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   offers: {
     "@type": "Offer",

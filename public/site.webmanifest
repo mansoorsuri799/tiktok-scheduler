@@ -1,19 +1,11 @@
 {
-  "name": "BMI Calculator Women",
-  "short_name": "BMI Women",
+  "name": "TikTok Scheduler",
+  "short_name": "Scheduler",
   "icons": [
-    {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    {"src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png"}
   ],
-  "theme_color": "#1A1225",
-  "background_color": "#FFF0F5",
+  "theme_color": "#7B5CFF",
+  "background_color": "#0F0B24",
   "display": "standalone"
 }

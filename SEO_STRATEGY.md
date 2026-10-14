@@ -1,26 +1,26 @@
-# SEO Strategy — bmicalculatorwomen.io
+# SEO Strategy — tiktokscheduler.net
 
-Primary keyword: **bmi calculator women** (also bmi calculator for women / bmi calculator female).
+Primary keyword: **tiktok scheduler** (also schedule tiktok posts / tiktok post scheduler).
 
 ## Core pages
 
 | Path | Target intent |
 |------|----------------|
-| `/` | bmi calculator women / female |
-| `/bmi-chart-women` | bmi chart women / for women / female |
-| `/healthy-bmi` | healthy bmi / normal bmi / what is a good bmi |
-| `/bmi-by-age` | bmi calculator women age / by age |
+| `/` | tiktok scheduler / schedule tiktok posts |
+| `/features` | tiktok scheduler features / auto publish |
+| `/how-it-works` | how tiktok scheduling works |
+| `/pricing` | tiktok scheduler pricing / free scheduler |
 
-## Blog posts (SERP-backed only)
+## Blog posts (Firecrawl SERP-backed only)
 
-1. `/blog/how-to-calculate-bmi` — how to calculate bmi / how to compute bmi
-2. `/blog/what-is-bmi` — what is bmi / bmi meaning
-3. `/blog/bmi-formula` — bmi formula
-4. `/blog/height-and-weight-chart-for-women` — height and weight chart / how much should i weigh
+1. `/blog/how-to-schedule-tiktok-posts` — how to schedule tiktok posts
+2. `/blog/best-time-to-post-on-tiktok` — best time to post on tiktok
+3. `/blog/tiktok-content-calendar` — tiktok content calendar
+4. `/blog/does-tiktok-have-a-scheduler` — does tiktok have a scheduler / native vs tools
 
-## Differentiators vs CDC / Calculator.net / Omni
+## Differentiators vs Buffer / Later / Adobe Express
 
-- Women-first default UX and copy (not a gender toggle buried in a generic tool)
-- Chart + healthy range + age notes on dedicated hubs (less doorway cannibalization)
-- Original tables, FAQ schema, HowTo + WebApplication rating markup
-- Brand imagery and plum/coral/teal theme from site assets
+- Brand-first dark theme from product icon (violet → pink), not generic SaaS purple-on-white
+- Product IA + only searched blog intents (no doorway BMI leftovers)
+- Honest native vs third-party comparison; FAQ + HowTo + SoftwareApplication schema
+- Original images in `/public` (logos, feature webps, OG)

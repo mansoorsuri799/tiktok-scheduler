@@ -1,6 +1,8 @@
-# SEO Audit — BMI Calculator Women
+# SEO Audit — TikTok Scheduler
 
-- Domain: bmicalculatorwomen.io
-- Brand: BMI Calculator Women
-- Primary keyword: bmi calculator women
-- Last review: 2026-10-11
+Rebrand completed October 14, 2026.
+
+- Domain canonicals: https://tiktokscheduler.net
+- BMI routes and blogs removed
+- Four SERP-validated blogs added via Firecrawl search
+- Sitemap + robots updated to new domain

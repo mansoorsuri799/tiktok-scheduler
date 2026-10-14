@@ -63,4 +63,4 @@ User-agent: *
 Disallow: /api/
 Disallow: /_next/
 
-Sitemap: https://bmicalculatorwomen.io/sitemap-index.xml
+Sitemap: https://tiktokscheduler.net/sitemap-index.xml

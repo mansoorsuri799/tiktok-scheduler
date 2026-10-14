@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-export const PRIMARY_CTA_HREF = '/#calculator';
+export const PRIMARY_CTA_HREF = '/#start';
 
-type IconKind = 'download' | 'arrow' | 'mail' | 'calc';
+type IconKind = 'download' | 'arrow' | 'mail' | 'play';
 
 type CtaButtonProps = {
   href?: string;
@@ -31,15 +31,15 @@ const ICONS: Record<IconKind, React.ReactNode> = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
     </svg>
   ),
-  calc: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6M9 11h6M9 15h2m-5 4h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+  play: (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 5v14l11-7L8 5z" />
     </svg>
   ),
 };
 
 const baseClass =
-  'download-btn inline-flex items-center justify-center px-8 py-4 text-white font-semibold text-lg rounded-2xl border border-pink/40 bg-gradient-to-r from-coral to-pink hover:from-coral-deep hover:to-pink-deep transition-all group shadow-[0_12px_28px_-14px_rgba(255,122,154,0.9)]';
+  'download-btn inline-flex items-center justify-center px-8 py-4 text-white font-semibold text-lg rounded-2xl border border-violet/40 bg-gradient-to-r from-violet to-pink hover:from-violet-deep hover:to-pink-deep transition-all group shadow-[0_12px_28px_-14px_rgba(123,92,255,0.9)]';
 
 function ButtonInner({
   children,
@@ -61,7 +61,7 @@ function ButtonInner({
 export default function CtaButton({
   href = PRIMARY_CTA_HREF,
   children,
-  icon = 'calc',
+  icon = 'arrow',
   onClick,
   type = 'button',
   as = 'link',

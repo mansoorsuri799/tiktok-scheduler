@@ -29,7 +29,7 @@ const sora = Sora({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sora",
-  weight: ["500", "600", "700"],
+  weight: "600",
 });
 
 export const viewport: Viewport = {
@@ -37,7 +37,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: "#1A1225",
+  themeColor: "#0F0B24",
   viewportFit: "cover",
   interactiveWidget: "resizes-visual",
 };
@@ -45,22 +45,19 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: {
-    default: "BMI Calculator Women — Free Female BMI Tool & Chart",
+    default: "TikTok Scheduler — Plan & Auto-Publish TikTok Videos",
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_TAGLINE,
   keywords: [
-    "bmi calculator women",
-    "bmi calculator for women",
-    "bmi calculator female",
-    "bmi chart women",
-    "bmi chart for women",
-    "bmi chart female",
-    "healthy bmi",
-    "how to calculate bmi",
-    "bmi formula",
-    "what is bmi",
-    "bmi calculator by age",
+    "tiktok scheduler",
+    "schedule tiktok posts",
+    "tiktok post scheduler",
+    "auto post tiktok",
+    "tiktok content calendar",
+    "best time to post on tiktok",
+    "how to schedule tiktok posts",
+    "tiktok video scheduler",
   ],
   authors: [{ name: `${SITE_NAME} Team` }],
   creator: SITE_NAME,
@@ -92,7 +89,7 @@ export const metadata: Metadata = {
     canonical: SITE_ORIGIN,
   },
   openGraph: {
-    title: "BMI Calculator Women — Free Female BMI Tool & Chart",
+    title: "TikTok Scheduler — Plan & Auto-Publish TikTok Videos",
     description: SITE_TAGLINE,
     url: SITE_ORIGIN,
     siteName: SITE_NAME,
@@ -103,26 +100,26 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "BMI Calculator Women — free female BMI calculator and chart",
+        alt: "TikTok Scheduler — plan and auto-publish TikTok videos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BMI Calculator Women — Free Female BMI Tool & Chart",
+    title: "TikTok Scheduler — Plan & Auto-Publish TikTok Videos",
     description: SITE_TAGLINE,
     images: [
       {
         url: TWITTER_IMAGE,
         width: 1200,
-        height: 675,
-        alt: "BMI Calculator Women — free female BMI calculator and chart",
+        height: 600,
+        alt: "TikTok Scheduler — plan and auto-publish TikTok videos",
       },
     ],
   },
   applicationName: SITE_NAME,
-  category: "Health",
-  classification: "BMI Calculator for Women",
+  category: "Business",
+  classification: "TikTok Scheduling Software",
 };
 
 export default function RootLayout({
@@ -134,7 +131,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${sora.variable}`}>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="icon" href={`/favicon.ico?v=${ASSET_VERSION}`} type="image/x-icon" sizes="48x48" />
         <link rel="icon" href={`/favicon.svg?v=${ASSET_VERSION}`} type="image/svg+xml" />
         <link rel="icon" href={`/favicon-32x32.png?v=${ASSET_VERSION}`} type="image/png" sizes="32x32" />
@@ -148,7 +145,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className="font-sans antialiased text-ink min-h-screen flex flex-col bg-blush site-atmosphere"
+        className="font-sans antialiased text-ink min-h-screen flex flex-col bg-brand site-atmosphere"
         suppressHydrationWarning
       >
         <MobileMenuProvider>

@@ -27,91 +27,40 @@ const nextConfig = {
         destination: '/about-us',
         permanent: true,
       },
-      // Legacy body-fat routes → BMI Calculator Women
+      // Retired BMI / unrelated routes from previous brand
       {
-        source: '/us-navy-body-fat-calculator',
+        source: '/bmi-chart-women',
         destination: '/',
         permanent: true,
       },
       {
-        source: '/body-fat-percentage-men',
-        destination: '/bmi-chart-women',
-        permanent: true,
-      },
-      {
-        source: '/body-fat-percentage-women',
-        destination: '/bmi-chart-women',
-        permanent: true,
-      },
-      {
-        source: '/visceral-fat-calculator',
-        destination: '/healthy-bmi',
-        permanent: true,
-      },
-      {
-        source: '/blog/how-to-measure-body-fat',
-        destination: '/blog/how-to-calculate-bmi',
-        permanent: true,
-      },
-      {
-        source: '/blog/how-to-calculate-body-fat-percentage',
-        destination: '/blog/bmi-formula',
-        permanent: true,
-      },
-      {
-        source: '/blog/ideal-body-fat-percentage',
-        destination: '/blog/what-is-bmi',
-        permanent: true,
-      },
-      // Older unrelated leftovers
-      {
-        source: '/how-florida-paychecks-work',
+        source: '/healthy-bmi',
         destination: '/',
         permanent: true,
       },
       {
-        source: '/florida-no-state-income-tax',
-        destination: '/healthy-bmi',
-        permanent: true,
-      },
-      {
-        source: '/pay-frequency-guide',
-        destination: '/bmi-by-age',
-        permanent: true,
-      },
-      {
-        source: '/blog/how-to-calculate-florida-take-home-pay',
-        destination: '/blog/how-to-calculate-bmi',
-        permanent: true,
-      },
-      {
-        source: '/blog/fica-taxes-explained',
-        destination: '/blog/what-is-bmi',
-        permanent: true,
-      },
-      {
-        source: '/blog/federal-tax-brackets',
-        destination: '/blog/bmi-formula',
-        permanent: true,
-      },
-      {
-        source: '/blog/federal-tax-brackets-2026',
-        destination: '/blog/bmi-formula',
-        permanent: true,
-      },
-      {
-        source: '/how-cds-work',
+        source: '/bmi-by-age',
         destination: '/',
         permanent: true,
       },
       {
-        source: '/cd-ladder',
-        destination: '/bmi-chart-women',
+        source: '/blog/how-to-calculate-bmi',
+        destination: '/blog',
         permanent: true,
       },
       {
-        source: '/cd-vs-savings-account',
-        destination: '/healthy-bmi',
+        source: '/blog/what-is-bmi',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/bmi-formula',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/height-and-weight-chart-for-women',
+        destination: '/blog',
         permanent: true,
       },
       // Legacy asset paths
@@ -127,27 +76,17 @@ const nextConfig = {
       },
       {
         source: '/twitter-card.webp',
-        destination: '/feature/twitter-card-1200x675.png',
+        destination: '/feature/twitter-card-1200x600.png',
         permanent: true,
       },
       {
         source: '/twitter-card.png',
-        destination: '/feature/twitter-card-1200x675.png',
+        destination: '/feature/twitter-card-1200x600.png',
         permanent: true,
       },
       {
-        source: '/feature/og-image-1200x630.webp',
-        destination: '/feature/og-image-1200x630.png',
-        permanent: true,
-      },
-      {
-        source: '/feature/twitter-card-1200x675.webp',
-        destination: '/feature/twitter-card-1200x675.png',
-        permanent: true,
-      },
-      {
-        source: '/hero-florida-paycheck-calculator.webp',
-        destination: '/hero-desktop-1920x1080.png',
+        source: '/feature/twitter-card-1200x675.png',
+        destination: '/feature/twitter-card-1200x600.png',
         permanent: true,
       },
       {
