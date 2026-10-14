@@ -1,6 +1,7 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { randomUUID } from "crypto";
+import { cookies } from "next/headers";
+import type { NextResponse } from "next/server";
+import { sealJson, unsealJson } from "@/lib/store/crypto";
 
 export type TikTokAccount = {
   openId: string;
@@ -33,62 +34,75 @@ export type ScheduledPost = {
   updatedAt: string;
 };
 
-type DbShape = {
-  accounts: Record<string, TikTokAccount>;
-  posts: ScheduledPost[];
-};
+const ACCOUNT_COOKIE = "tts_account";
+const POSTS_COOKIE = "tts_posts";
+const MAX_AGE = 60 * 60 * 24 * 30;
 
-const DATA_DIR = process.env.DATA_DIR?.trim() || path.join(process.cwd(), "data");
-const DB_FILE = path.join(DATA_DIR, "store.json");
-
-async function ensureDb(): Promise<void> {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  try {
-    await fs.access(DB_FILE);
-  } catch {
-    const empty: DbShape = { accounts: {}, posts: [] };
-    await fs.writeFile(DB_FILE, JSON.stringify(empty, null, 2), "utf8");
-  }
-}
-
-async function readDb(): Promise<DbShape> {
-  await ensureDb();
-  const raw = await fs.readFile(DB_FILE, "utf8");
-  const parsed = JSON.parse(raw) as DbShape;
+function cookieOpts(maxAge = MAX_AGE) {
   return {
-    accounts: parsed.accounts || {},
-    posts: Array.isArray(parsed.posts) ? parsed.posts : [],
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax" as const,
+    path: "/",
+    maxAge,
   };
 }
 
-async function writeDb(db: DbShape): Promise<void> {
-  await ensureDb();
-  const tmp = `${DB_FILE}.${randomUUID()}.tmp`;
-  await fs.writeFile(tmp, JSON.stringify(db, null, 2), "utf8");
-  await fs.rename(tmp, DB_FILE);
+async function readAccountCookie(): Promise<TikTokAccount | null> {
+  const jar = await cookies();
+  return unsealJson<TikTokAccount>(jar.get(ACCOUNT_COOKIE)?.value);
+}
+
+async function readPostsCookie(): Promise<ScheduledPost[]> {
+  const jar = await cookies();
+  return unsealJson<ScheduledPost[]>(jar.get(POSTS_COOKIE)?.value) || [];
+}
+
+async function writeAccountCookie(account: TikTokAccount | null): Promise<void> {
+  const jar = await cookies();
+  if (!account) {
+    jar.set(ACCOUNT_COOKIE, "", { ...cookieOpts(0), maxAge: 0 });
+    return;
+  }
+  jar.set(ACCOUNT_COOKIE, sealJson(account), cookieOpts());
+}
+
+async function writePostsCookie(posts: ScheduledPost[]): Promise<void> {
+  const jar = await cookies();
+  jar.set(POSTS_COOKIE, sealJson(posts), cookieOpts());
+}
+
+/** Attach encrypted account cookie to a redirect/JSON response (Vercel-safe). */
+export function attachAccountCookie(res: NextResponse, account: TikTokAccount): void {
+  res.cookies.set(ACCOUNT_COOKIE, sealJson(account), cookieOpts());
+}
+
+export function clearAccountCookie(res: NextResponse): void {
+  res.cookies.set(ACCOUNT_COOKIE, "", { ...cookieOpts(0), maxAge: 0 });
+  res.cookies.set(POSTS_COOKIE, "", { ...cookieOpts(0), maxAge: 0 });
 }
 
 export async function upsertAccount(account: TikTokAccount): Promise<void> {
-  const db = await readDb();
-  db.accounts[account.openId] = account;
-  await writeDb(db);
+  await writeAccountCookie(account);
 }
 
 export async function getAccount(openId: string): Promise<TikTokAccount | null> {
-  const db = await readDb();
-  return db.accounts[openId] || null;
+  const account = await readAccountCookie();
+  if (!account || account.openId !== openId) return null;
+  return account;
 }
 
 export async function deleteAccount(openId: string): Promise<void> {
-  const db = await readDb();
-  delete db.accounts[openId];
-  db.posts = db.posts.filter((p) => p.openId !== openId);
-  await writeDb(db);
+  const account = await readAccountCookie();
+  if (account?.openId === openId) {
+    await writeAccountCookie(null);
+  }
+  const posts = (await readPostsCookie()).filter((p) => p.openId !== openId);
+  await writePostsCookie(posts);
 }
 
 export async function listPosts(openId: string): Promise<ScheduledPost[]> {
-  const db = await readDb();
-  return db.posts
+  return (await readPostsCookie())
     .filter((p) => p.openId === openId)
     .sort(
       (a, b) =>
@@ -97,8 +111,7 @@ export async function listPosts(openId: string): Promise<ScheduledPost[]> {
 }
 
 export async function countScheduledPosts(openId: string): Promise<number> {
-  const db = await readDb();
-  return db.posts.filter(
+  return (await readPostsCookie()).filter(
     (p) => p.openId === openId && (p.status === "scheduled" || p.status === "publishing")
   ).length;
 }
@@ -106,7 +119,7 @@ export async function countScheduledPosts(openId: string): Promise<number> {
 export async function createPost(
   input: Omit<ScheduledPost, "id" | "status" | "createdAt" | "updatedAt">
 ): Promise<ScheduledPost> {
-  const db = await readDb();
+  const posts = await readPostsCookie();
   const now = new Date().toISOString();
   const post: ScheduledPost = {
     ...input,
@@ -115,25 +128,25 @@ export async function createPost(
     createdAt: now,
     updatedAt: now,
   };
-  db.posts.push(post);
-  await writeDb(db);
+  posts.push(post);
+  await writePostsCookie(posts);
   return post;
 }
 
 export async function deletePost(openId: string, id: string): Promise<boolean> {
-  const db = await readDb();
-  const before = db.posts.length;
-  db.posts = db.posts.filter(
+  const posts = await readPostsCookie();
+  const next = posts.filter(
     (p) => !(p.id === id && p.openId === openId && p.status === "scheduled")
   );
-  if (db.posts.length === before) return false;
-  await writeDb(db);
+  if (next.length === posts.length) return false;
+  await writePostsCookie(next);
   return true;
 }
 
 export async function getDuePosts(now = Date.now()): Promise<ScheduledPost[]> {
-  const db = await readDb();
-  return db.posts.filter(
+  // Cookie store is per-user; cron has no user cookies.
+  // Due publishing for serverless needs a shared DB later (e.g. Upstash).
+  return (await readPostsCookie()).filter(
     (p) => p.status === "scheduled" && new Date(p.scheduledAt).getTime() <= now
   );
 }
@@ -142,14 +155,14 @@ export async function updatePost(
   id: string,
   patch: Partial<ScheduledPost>
 ): Promise<ScheduledPost | null> {
-  const db = await readDb();
-  const idx = db.posts.findIndex((p) => p.id === id);
+  const posts = await readPostsCookie();
+  const idx = posts.findIndex((p) => p.id === id);
   if (idx < 0) return null;
-  db.posts[idx] = {
-    ...db.posts[idx],
+  posts[idx] = {
+    ...posts[idx],
     ...patch,
     updatedAt: new Date().toISOString(),
   };
-  await writeDb(db);
-  return db.posts[idx];
+  await writePostsCookie(posts);
+  return posts[idx];
 }

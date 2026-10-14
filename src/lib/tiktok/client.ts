@@ -12,6 +12,8 @@ import {
 import type { TikTokAccount } from "@/lib/store/db";
 import { getAccount, upsertAccount } from "@/lib/store/db";
 
+// Account persistence is cookie-based (Vercel-safe). upsertAccount writes the cookie.
+
 type TokenResponse = {
   access_token?: string;
   expires_in?: number;
@@ -82,6 +84,7 @@ export async function exchangeCodeForTokens(code: string): Promise<TikTokAccount
     connectedAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
+  // Caller (callback) must attachAccountCookie on the response for Vercel redirects.
   await upsertAccount(account);
   return account;
 }

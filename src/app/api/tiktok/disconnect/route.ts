@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
-import { getAccount, deleteAccount } from "@/lib/store/db";
-import { clearSession, getSessionOpenId } from "@/lib/store/session";
+import {
+  clearAccountCookie,
+  deleteAccount,
+  getAccount,
+} from "@/lib/store/db";
+import { clearSessionCookie, getSessionOpenId } from "@/lib/store/session";
 import { revokeToken } from "@/lib/tiktok/client";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +25,8 @@ export async function POST() {
     await deleteAccount(openId);
   }
 
-  await clearSession();
-  return NextResponse.json({ ok: true });
+  const res = NextResponse.json({ ok: true });
+  clearSessionCookie(res);
+  clearAccountCookie(res);
+  return res;
 }

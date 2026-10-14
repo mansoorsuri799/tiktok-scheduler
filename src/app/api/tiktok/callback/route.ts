@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { exchangeCodeForTokens } from "@/lib/tiktok/client";
+import { attachAccountCookie } from "@/lib/store/db";
 import {
   attachSessionCookie,
   clearOAuthStateCookie,
@@ -48,6 +49,7 @@ export async function GET(request: NextRequest) {
     const account = await exchangeCodeForTokens(code);
     const res = NextResponse.redirect(`${SITE_ORIGIN}/dashboard?connected=1`, 302);
     attachSessionCookie(res, account.openId);
+    attachAccountCookie(res, account);
     clearOAuthStateCookie(res);
     return res;
   } catch (err) {
