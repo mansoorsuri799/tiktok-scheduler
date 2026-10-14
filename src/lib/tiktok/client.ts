@@ -4,7 +4,7 @@ import {
   getTikTokRedirectUri,
   TIKTOK_AUTH_URL,
   TIKTOK_REVOKE_URL,
-  TIKTOK_SCOPES,
+  getTikTokScopes,
   TIKTOK_TOKEN_URL,
   TIKTOK_USER_INFO_URL,
   TIKTOK_VIDEO_INIT_URL,
@@ -28,7 +28,7 @@ export function buildAuthorizeUrl(state: string): string {
   const params = new URLSearchParams({
     client_key: getTikTokClientKey(),
     response_type: "code",
-    scope: TIKTOK_SCOPES,
+    scope: getTikTokScopes(),
     redirect_uri: getTikTokRedirectUri(),
     state,
   });
@@ -69,7 +69,7 @@ export async function exchangeCodeForTokens(code: string): Promise<TikTokAccount
     refreshToken: data.refresh_token,
     accessTokenExpiresAt: now + (data.expires_in || 86400) * 1000,
     refreshTokenExpiresAt: now + (data.refresh_expires_in || 31536000) * 1000,
-    scope: data.scope || TIKTOK_SCOPES,
+    scope: data.scope || getTikTokScopes(),
     displayName: profile.displayName,
     avatarUrl: profile.avatarUrl,
     connectedAt: new Date().toISOString(),

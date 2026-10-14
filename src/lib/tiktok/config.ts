@@ -14,12 +14,20 @@ export const FREE_PLAN = {
   maxScheduledPosts: 500,
 } as const;
 
-/** Scopes for profile + direct video publish (scheduler auto-post). */
-export const TIKTOK_SCOPES = [
-  "user.info.basic",
-  "video.upload",
-  "video.publish",
-].join(",");
+/**
+ * Scopes requested at connect time.
+ * Sandbox tip: start with only `user.info.basic` until Login Kit + Content
+ * Posting API are approved, then set:
+ * TIKTOK_SCOPES=user.info.basic,video.upload,video.publish
+ */
+export function getTikTokScopes(): string {
+  const fromEnv = process.env.TIKTOK_SCOPES?.trim();
+  if (fromEnv) return fromEnv.replace(/\s+/g, "");
+  return "user.info.basic,video.upload,video.publish";
+}
+
+/** @deprecated use getTikTokScopes() */
+export const TIKTOK_SCOPES = "user.info.basic,video.upload,video.publish";
 
 export function getTikTokClientKey(): string {
   return process.env.TIKTOK_CLIENT_KEY?.trim() || "";
