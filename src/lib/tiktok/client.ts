@@ -58,7 +58,14 @@ export async function exchangeCodeForTokens(code: string): Promise<TikTokAccount
   });
 
   if (!data.access_token || !data.open_id || !data.refresh_token) {
-    throw new Error(data.error_description || data.error || "Token exchange failed");
+    const detail = data.error_description || data.error || "Token exchange failed";
+    // Common when Vercel secret doesn't match the Client key used at authorize time
+    if (/client key|client_key|authorization record/i.test(detail)) {
+      throw new Error(
+        `${detail} Copy Client key + Client secret together from TikTok Credentials into Vercel, then Redeploy and Connect again.`
+      );
+    }
+    throw new Error(detail);
   }
 
   const now = Date.now();
