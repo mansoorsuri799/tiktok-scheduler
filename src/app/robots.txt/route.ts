@@ -67,7 +67,6 @@ Disallow: /
 User-agent: *
 Disallow: /api/
 Disallow: /_next/
-Disallow: /dashboard
 
 Sitemap: ${SITE_ORIGIN}/sitemap-index.xml
 `;

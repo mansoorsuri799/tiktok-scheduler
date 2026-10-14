@@ -12,7 +12,7 @@ export type SitemapPage = {
   images?: Array<{ loc: string; title: string; caption: string }>;
 };
 
-const LASTMOD = "2026-10-14";
+const LASTMOD = "2026-10-15";
 
 export const SITEMAP_PAGES: SitemapPage[] = [
   {
@@ -69,6 +69,19 @@ export const SITEMAP_PAGES: SitemapPage[] = [
         loc: imageLoc("/tiktok-scheduler-4.webp"),
         title: "TikTok Scheduler pricing",
         caption: "Free plan for scheduling TikTok posts",
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    lastMod: LASTMOD,
+    changeFreq: "weekly",
+    priority: 0.95,
+    images: [
+      {
+        loc: imageLoc("/android-chrome-512x512.png"),
+        title: "TikTok Scheduler dashboard",
+        caption: "Connect TikTok and schedule posts on the free dashboard",
       },
     ],
   },

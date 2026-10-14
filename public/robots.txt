@@ -62,6 +62,5 @@ Disallow: /
 User-agent: *
 Disallow: /api/
 Disallow: /_next/
-Disallow: /dashboard
 
 Sitemap: https://tiktokscheduler.net/sitemap-index.xml
