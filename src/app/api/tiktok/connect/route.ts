@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isTikTokConfigured } from "@/lib/tiktok/config";
 import { buildAuthorizeUrl } from "@/lib/tiktok/client";
-import { createOAuthState, setOAuthState } from "@/lib/store/session";
+import { attachOAuthStateCookie, createOAuthState } from "@/lib/store/session";
 import { SITE_ORIGIN } from "@/lib/siteConfig";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +17,8 @@ export async function GET() {
   }
 
   const state = createOAuthState();
-  await setOAuthState(state);
-  return NextResponse.redirect(buildAuthorizeUrl(state), 302);
+  const res = NextResponse.redirect(buildAuthorizeUrl(state), 302);
+  // Set cookie on the redirect response (cookies() alone often drops on Vercel)
+  attachOAuthStateCookie(res, state);
+  return res;
 }

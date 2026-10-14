@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { exchangeCodeForTokens } from "@/lib/tiktok/client";
-import { consumeOAuthState, setSession } from "@/lib/store/session";
+import {
+  attachSessionCookie,
+  clearOAuthStateCookie,
+  consumeOAuthState,
+} from "@/lib/store/session";
 import { SITE_ORIGIN } from "@/lib/siteConfig";
 
 export const dynamic = "force-dynamic";
@@ -42,8 +46,10 @@ export async function GET(request: NextRequest) {
 
   try {
     const account = await exchangeCodeForTokens(code);
-    await setSession(account.openId);
-    return NextResponse.redirect(`${SITE_ORIGIN}/dashboard?connected=1`, 302);
+    const res = NextResponse.redirect(`${SITE_ORIGIN}/dashboard?connected=1`, 302);
+    attachSessionCookie(res, account.openId);
+    clearOAuthStateCookie(res);
+    return res;
   } catch (err) {
     const message =
       err instanceof Error ? err.message : "Failed to connect TikTok account";
