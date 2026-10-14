@@ -18,6 +18,11 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     qualities: [75, 80, 90, 100],
     minimumCacheTTL: 0,
+    remotePatterns: [
+      { protocol: 'https', hostname: '**.tiktokcdn.com' },
+      { protocol: 'https', hostname: '**.tiktokcdn-us.com' },
+      { protocol: 'https', hostname: '**.ttwstatic.com' },
+    ],
   },
 
   async redirects() {

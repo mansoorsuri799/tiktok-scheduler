@@ -69,13 +69,13 @@ export default function DoesTikTokHaveSchedulerPage() {
         native scheduling alone covers how you actually work.
       </p>
 
-      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
         <Image
           src={BRAND_FEATURE_4}
           alt="Comparing native TikTok scheduling with TikTok Scheduler"
           width={1600}
           height={900}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           priority
         />
       </div>
@@ -161,12 +161,12 @@ export default function DoesTikTokHaveSchedulerPage() {
               <tr className="border-t border-white/10">
                 <td className="px-4 py-3">Bulk queue after filming</td>
                 <td className="px-4 py-3">Basic</td>
-                <td className="px-4 py-3">Growth+ plans</td>
+                <td className="px-4 py-3">Included free</td>
               </tr>
               <tr className="border-t border-white/10">
-                <td className="px-4 py-3">Team approvals</td>
-                <td className="px-4 py-3">Limited</td>
-                <td className="px-4 py-3">Team plan</td>
+                <td className="px-4 py-3">Auto-publish queue</td>
+                <td className="px-4 py-3">Limited window</td>
+                <td className="px-4 py-3">Free dashboard</td>
               </tr>
             </tbody>
           </table>

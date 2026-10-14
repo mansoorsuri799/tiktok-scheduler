@@ -6,118 +6,93 @@ import FaqSection from "@/components/FaqSection";
 import { BRAND_FEATURE_4, OG_IMAGE, SITE_NAME, SITE_ORIGIN } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
-  title: "TikTok Scheduler Pricing — Free & Growth Plans",
+  title: "TikTok Scheduler Pricing — Free Plan",
   description:
-    "Simple TikTok Scheduler pricing: free plan to start, Growth for bulk scheduling and more queued posts, Team for multi-seat brands.",
+    "TikTok Scheduler is free: connect one TikTok account, queue posts, and auto-publish at peak times.",
   alternates: { canonical: `${SITE_ORIGIN}/pricing` },
   openGraph: {
-    title: "TikTok Scheduler Pricing — Free & Growth Plans",
-    description: "Choose a plan for scheduling TikTok posts — start free.",
+    title: "TikTok Scheduler Pricing — Free Plan",
+    description: "Use TikTok Scheduler free — connect TikTok and start scheduling.",
     url: `${SITE_ORIGIN}/pricing`,
     siteName: SITE_NAME,
     type: "website",
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "TikTok Scheduler pricing" }],
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "TikTok Scheduler free plan" }],
   },
 };
 
 const faqs = [
   {
-    question: "Is there a free TikTok scheduler plan?",
+    question: "Is TikTok Scheduler free?",
     answer:
-      "Yes. Free includes core scheduling for a limited number of posts per month so you can validate the workflow before upgrading.",
+      "Yes. The product runs on a free plan: connect one TikTok account, queue posts with public video URLs, and auto-publish on schedule.",
   },
   {
-    question: "Can I cancel anytime?",
+    question: "Do I need a paid plan to connect TikTok?",
     answer:
-      "Paid plans are month-to-month. Cancel from billing settings and your queue remains until the period ends.",
+      "No. Connecting your TikTok account and scheduling posts works on the free plan.",
   },
   {
-    question: "Do you offer team seats?",
+    question: "What do I need to schedule a post?",
     answer:
-      "The Team plan adds seats for editors and approvers who share one TikTok publishing calendar.",
+      "A Professional TikTok account connected via OAuth, a public https video URL TikTok can pull, and a future publish time.",
   },
 ];
 
-const plans = [
-  {
-    name: "Free",
-    price: "$0",
-    blurb: "Learn the queue and publish your first week of content.",
-    perks: ["1 TikTok account", "Limited scheduled posts / month", "Content calendar view", "Email support"],
-  },
-  {
-    name: "Growth",
-    price: "$19",
-    blurb: "For creators who batch film and need reliable auto-publish.",
-    perks: ["1 TikTok account", "Higher monthly queue limits", "Bulk upload", "Peak-time suggestions", "Priority email support"],
-    featured: true,
-  },
-  {
-    name: "Team",
-    price: "$49",
-    blurb: "For brands and agencies coordinating approvals.",
-    perks: ["Up to 3 TikTok accounts", "3 seats", "Shared calendar", "Bulk upload", "Approval notes"],
-  },
+const perks = [
+  "1 connected TikTok account",
+  "Schedule & auto-publish posts",
+  "Content queue dashboard",
+  "Peak-time publishing via cron runner",
+  "No credit card required",
 ];
 
 export default function PricingPage() {
   return (
-    <div className="container mx-auto max-w-5xl px-4 py-10">
+    <div className="container mx-auto max-w-3xl px-4 py-10">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Pricing" }]} />
       <h1 className="mb-4 font-display text-3xl font-bold text-white md:text-4xl">
-        Pricing that starts free
+        Free plan — full scheduler
       </h1>
       <p className="mb-10 max-w-2xl text-lg text-white/80">
-        Pick a plan for how often you publish — not a maze of add-ons. All plans run on{" "}
-        {SITE_NAME} at tiktokscheduler.net.
+        {SITE_NAME} is free to use. Connect TikTok, fill your queue, and publish when your audience
+        is online.
       </p>
 
-      <div className="relative mb-12 aspect-[21/9] overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative mb-12 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
         <Image
           src={BRAND_FEATURE_4}
-          alt="TikTok Scheduler plans for creators and teams"
+          alt="TikTok Scheduler free plan dashboard"
           fill
           priority
-          sizes="(max-width: 1024px) 100vw, 960px"
-          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-contain"
         />
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {plans.map((plan) => (
-          <div
-            key={plan.name}
-            className={`flex flex-col border p-6 ${
-              plan.featured
-                ? "border-violet bg-violet/10"
-                : "border-white/10 bg-white/5"
-            }`}
-          >
-            <h2 className="font-display text-xl font-bold text-white">{plan.name}</h2>
-            <p className="mt-3 font-display text-3xl font-bold text-white">
-              {plan.price}
-              <span className="text-base font-medium text-white/60">/mo</span>
-            </p>
-            <p className="mt-3 text-sm text-white/75">{plan.blurb}</p>
-            <ul className="mt-6 flex-1 space-y-2 text-sm text-white/80">
-              {plan.perks.map((perk) => (
-                <li key={perk} className="flex gap-2">
-                  <span className="text-teal" aria-hidden="true">✓</span>
-                  {perk}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8">
-              <CtaButton
-                href="/#start"
-                className="w-full !px-4 !py-3 !text-base"
-                ariaLabel={`Choose ${plan.name} plan`}
-              >
-                {plan.name === "Free" ? "START FREE" : "CHOOSE PLAN"}
-              </CtaButton>
-            </div>
-          </div>
-        ))}
+      <div className="border border-violet bg-violet/10 p-8">
+        <h2 className="font-display text-2xl font-bold text-white">Free</h2>
+        <p className="mt-3 font-display text-4xl font-bold text-white">
+          $0
+          <span className="text-base font-medium text-white/60"> forever</span>
+        </p>
+        <p className="mt-3 text-white/75">
+          Everything you need to schedule TikTok posts — included on day one.
+        </p>
+        <ul className="mt-6 space-y-2 text-sm text-white/85">
+          {perks.map((perk) => (
+            <li key={perk} className="flex gap-2">
+              <span className="text-teal" aria-hidden="true">
+                ✓
+              </span>
+              {perk}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8">
+          <CtaButton href="/dashboard" ariaLabel="Open free TikTok Scheduler dashboard">
+            START FREE — CONNECT TIKTOK
+          </CtaButton>
+        </div>
       </div>
 
       <FaqSection items={faqs} />

@@ -25,7 +25,8 @@ const navSections: NavSection[] = [
       { href: '/', label: 'Home' },
       { href: '/features', label: 'Features' },
       { href: '/how-it-works', label: 'How It Works' },
-      { href: '/pricing', label: 'Pricing' },
+      { href: '/pricing', label: 'Free plan' },
+      { href: '/dashboard', label: 'Dashboard' },
     ],
   },
   {
@@ -167,11 +168,11 @@ export default function MobileNavigation() {
 
             <div className="border-t border-white/10 bg-brand-soft/70 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
               <Link
-                href="/#start"
+                href="/dashboard"
                 onClick={closeMenu}
                 className="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-violet to-pink px-4 py-3 text-sm font-bold text-white"
               >
-                Start scheduling
+                Connect TikTok
               </Link>
             </div>
           </div>,

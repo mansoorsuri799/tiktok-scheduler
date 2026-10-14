@@ -27,9 +27,9 @@ export const SITEMAP_PAGES: SitemapPage[] = [
         caption: "Brand mark for TikTok Scheduler on tiktokscheduler.net",
       },
       {
-        loc: imageLoc("/tiktok-scheduler-1.webp"),
-        title: "TikTok Scheduler dashboard",
-        caption: "Plan and schedule TikTok videos from the TikTok Scheduler homepage",
+        loc: imageLoc("/tiktok-scheduler-2.webp"),
+        title: "TikTok Scheduler calendar",
+        caption: "Content calendar and queue for scheduling TikTok videos",
       },
     ],
   },
@@ -68,7 +68,7 @@ export const SITEMAP_PAGES: SitemapPage[] = [
       {
         loc: imageLoc("/tiktok-scheduler-4.webp"),
         title: "TikTok Scheduler pricing",
-        caption: "Free and paid plans for scheduling TikTok posts",
+        caption: "Free plan for scheduling TikTok posts",
       },
     ],
   },

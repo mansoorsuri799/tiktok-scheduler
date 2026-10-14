@@ -10,9 +10,9 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/features', label: 'Features' },
   { href: '/how-it-works', label: 'How It Works' },
-  { href: '/pricing', label: 'Pricing' },
+  { href: '/pricing', label: 'Free plan' },
+  { href: '/dashboard', label: 'Dashboard' },
   { href: '/blog', label: 'Blog' },
-  { href: '/about-us', label: 'About' },
 ];
 
 export default function Header() {
@@ -64,10 +64,10 @@ export default function Header() {
 
         <div className="hidden xl:block">
           <Link
-            href="/#start"
+            href="/dashboard"
             className="inline-flex items-center rounded-xl bg-gradient-to-r from-violet to-pink px-4 py-2 text-sm font-semibold text-white shadow-[0_10px_28px_-12px_rgba(123,92,255,0.9)] transition hover:brightness-110"
           >
-            Start scheduling
+            Connect TikTok
           </Link>
         </div>
 

@@ -24,7 +24,8 @@ export default function Footer() {
               <li><Link href="/" className="text-white/85 hover:text-white hover:underline">TikTok Scheduler</Link></li>
               <li><Link href="/features" className="text-white/85 hover:text-white hover:underline">Features</Link></li>
               <li><Link href="/how-it-works" className="text-white/85 hover:text-white hover:underline">How It Works</Link></li>
-              <li><Link href="/pricing" className="text-white/85 hover:text-white hover:underline">Pricing</Link></li>
+              <li><Link href="/pricing" className="text-white/85 hover:text-white hover:underline">Free plan</Link></li>
+              <li><Link href="/dashboard" className="text-white/85 hover:text-white hover:underline">Dashboard</Link></li>
               <li><Link href="/blog" className="text-white/85 hover:text-white hover:underline">Blog</Link></li>
             </ul>
           </div>
@@ -47,8 +48,8 @@ export default function Footer() {
             <p className="mb-4 text-sm text-white/80">
               Queue TikTok videos once, publish at the times your audience is online.
             </p>
-            <CtaButton href="/#start" ariaLabel="Start scheduling TikTok posts" icon="arrow">
-              START FREE
+            <CtaButton href="/dashboard" ariaLabel="Connect TikTok and start scheduling" icon="arrow">
+              CONNECT TIKTOK
             </CtaButton>
           </div>
         </div>

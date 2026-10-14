@@ -8,13 +8,68 @@ import { imageObjectLicensing } from "@/lib/schemaImageLicensing";
 import {
   BRAND_FEATURE_2,
   BRAND_FEATURE_3,
-  BRAND_HERO,
+  BRAND_FEATURE_4,
   BRAND_LOGO,
   OG_IMAGE,
   SITE_NAME,
   SITE_ORIGIN,
   SITE_RATING,
 } from "@/lib/siteConfig";
+
+const homeFeatures = [
+  {
+    title: "Content calendar",
+    body: "See your week or month of TikToks in one view. Move posts between slots when a trend shifts or a product launch moves.",
+  },
+  {
+    title: "Auto-publish queue",
+    body: "Approve captions and covers once. TikTok Scheduler publishes at the scheduled time so you are not racing app notifications.",
+  },
+  {
+    title: "Peak-time scheduling",
+    body: "Pick exact times or start from suggested windows when your audience is more likely to be online.",
+  },
+  {
+    title: "Bulk upload",
+    body: "After a filming day, upload multiple videos and assign publish times across the week in one pass.",
+  },
+  {
+    title: "Desktop captions & hashtags",
+    body: "Write fuller captions, reuse hashtag sets, and preview how each post reads before it goes live.",
+  },
+  {
+    title: "Professional account ready",
+    body: "Built for Creator and Business accounts with publishing permissions, plus clear reconnect prompts if a token expires.",
+  },
+];
+
+const howToUseSteps = [
+  {
+    n: "01",
+    t: "Open the free dashboard",
+    d: "Go to /dashboard — TikTok Scheduler is free. No paid plan is required to connect or schedule.",
+  },
+  {
+    n: "02",
+    t: "Connect TikTok",
+    d: "Authorize a Professional (Creator or Business) TikTok account so publish permissions are available.",
+  },
+  {
+    n: "03",
+    t: "Add video URL and caption",
+    d: "Paste a public https MP4 URL, write your caption, and choose privacy settings.",
+  },
+  {
+    n: "04",
+    t: "Pick publish times",
+    d: "Set the date and time for each post so it goes live when your audience is online.",
+  },
+  {
+    n: "05",
+    t: "Auto-publish",
+    d: "When the slot arrives, the publish runner posts through TikTok’s API. Cancel anytime before go-live.",
+  },
+];
 
 export const metadata: Metadata = {
   title: {
@@ -51,7 +106,7 @@ const faqs = [
   {
     question: "Can I schedule TikTok posts for free?",
     answer:
-      "Yes. TikTok Scheduler includes a free plan to queue posts and learn the workflow. Paid plans unlock more scheduled posts, bulk uploads, and team seats — see Pricing for current limits.",
+      "Yes. TikTok Scheduler is free: connect one TikTok account, queue posts with public video URLs, and auto-publish on schedule from the dashboard.",
   },
   {
     question: "Does scheduling hurt TikTok reach?",
@@ -92,9 +147,9 @@ export default function Home() {
         isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
         primaryImageOfPage: {
           "@type": "ImageObject",
-          url: `${SITE_ORIGIN}${BRAND_HERO}`,
-          width: 1600,
-          height: 900,
+          url: `${SITE_ORIGIN}${BRAND_LOGO}`,
+          width: 512,
+          height: 512,
           ...imageObjectLicensing,
         },
       },
@@ -106,30 +161,14 @@ export default function Home() {
       },
       {
         "@type": "HowTo",
-        name: "How to schedule TikTok posts with TikTok Scheduler",
-        description: "Connect your account, queue videos, and publish on a schedule.",
-        step: [
-          {
-            "@type": "HowToStep",
-            name: "Connect TikTok",
-            text: "Sign in and securely connect your Professional TikTok account.",
-          },
-          {
-            "@type": "HowToStep",
-            name: "Upload and caption",
-            text: "Add videos, write captions and hashtags, then preview the post.",
-          },
-          {
-            "@type": "HowToStep",
-            name: "Pick a time",
-            text: "Choose a date and time — or use recommended peak windows for your audience.",
-          },
-          {
-            "@type": "HowToStep",
-            name: "Auto-publish",
-            text: "Save to the queue. TikTok Scheduler publishes when the slot arrives.",
-          },
-        ],
+        name: "How to use TikTok Scheduler",
+        description: "Create an account, connect TikTok, queue videos, and auto-publish on a schedule.",
+        step: howToUseSteps.map((step, index) => ({
+          "@type": "HowToStep",
+          position: index + 1,
+          name: step.t,
+          text: step.d,
+        })),
       },
     ],
   };
@@ -141,25 +180,18 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      {/* Hero — one composition: brand, headline, support, CTA, full-bleed visual */}
-      <section className="relative min-h-[88vh] overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={BRAND_HERO}
-            alt="TikTok Scheduler dashboard for planning and publishing TikTok videos"
-            fill
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className="object-cover object-center"
+      {/* Hero — brand, headline, support, CTA on clean atmosphere (no busy bg image) */}
+      <section className="relative min-h-[72vh] overflow-hidden">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-soft/80 via-brand to-brand" />
+          <div className="hero-glow absolute -left-24 top-0 h-72 w-72 rounded-full bg-violet/35 blur-3xl" />
+          <div
+            className="hero-glow absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-pink/25 blur-3xl"
+            style={{ animationDelay: "1.5s" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand via-brand/85 to-brand/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand via-transparent to-brand/50" />
-          <div className="hero-glow pointer-events-none absolute -left-20 top-10 h-64 w-64 rounded-full bg-violet/40 blur-3xl" />
-          <div className="hero-glow pointer-events-none absolute -right-10 bottom-20 h-72 w-72 rounded-full bg-pink/30 blur-3xl" style={{ animationDelay: "1.5s" }} />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[72vh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
           <p className="mb-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl animate-fade-up">
             <span className="brand-gradient-text">{SITE_NAME}</span>
           </p>
@@ -170,8 +202,8 @@ export default function Home() {
             Queue posts, build a content calendar, and auto-publish TikToks at peak times — without juggling drafts in the mobile app.
           </p>
           <div id="start" className="flex flex-wrap items-center gap-4 animate-fade-up" style={{ animationDelay: "200ms" }}>
-            <CtaButton href="/pricing" ariaLabel="Start scheduling with TikTok Scheduler" icon="play">
-              START SCHEDULING
+            <CtaButton href="/dashboard" ariaLabel="Connect TikTok and start scheduling" icon="play">
+              CONNECT TIKTOK — FREE
             </CtaButton>
             <Link
               href="/how-it-works"
@@ -197,93 +229,222 @@ export default function Home() {
       </section>
 
       <div className="container mx-auto max-w-6xl px-4 py-16">
-        <section className="mb-20">
+        <section id="what-is-tiktok-scheduler" className="mb-20">
           <h2 className="mb-4 font-display text-2xl font-bold text-white md:text-3xl">
-            Why creators use a TikTok post scheduler
+            What is TikTok Scheduler?
           </h2>
-          <p className="mb-10 max-w-3xl text-lg leading-relaxed text-white/80">
-            Posting every day is hard when inspiration hits at midnight and your audience wakes at 7 a.m.
-            A dedicated <strong className="font-semibold text-white">TikTok scheduler</strong> turns
-            batch filming into a calm calendar — so growth comes from consistency, not last-minute taps.
-          </p>
-          <div className="grid gap-10 md:grid-cols-2 md:items-center">
-            <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
+          <div className="grid gap-10 md:grid-cols-2 md:items-start">
+            <div className="space-y-4 text-lg leading-relaxed text-white/80">
+              <p>
+                <strong className="font-semibold text-white">{SITE_NAME}</strong> is a web-based
+                TikTok post scheduler for creators, brands, and small teams. Instead of posting only
+                when you finish editing, you upload videos, write captions, choose publish times, and
+                let the queue go live automatically.
+              </p>
+              <p>
+                It solves a simple timing problem: your best creative moments rarely match your
+                audience’s peak hours. A dedicated{" "}
+                <strong className="font-semibold text-white">TikTok scheduler</strong> turns batch
+                filming into a calm content calendar so consistency does not depend on living inside
+                the mobile app.
+              </p>
+              <p>
+                You can still use TikTok’s native Studio tools for short windows. {SITE_NAME} is for
+                longer planning — weekly calendars, bulk queues, desktop captioning, and peak-time
+                slots. Read how that compares in{" "}
+                <Link
+                  href="/blog/does-tiktok-have-a-scheduler"
+                  className="text-violet-soft underline hover:no-underline"
+                >
+                  does TikTok have a scheduler
+                </Link>
+                .
+              </p>
+            </div>
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
               <Image
                 src={BRAND_FEATURE_2}
-                alt="TikTok Scheduler calendar view for queued video posts"
+                alt="What TikTok Scheduler looks like — calendar and queued posts"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="object-contain"
+                priority
               />
             </div>
-            <ul className="space-y-5 text-white/85">
-              {[
-                {
-                  title: "Post at peak times",
-                  body: "Lock slots that match when your followers are online, then let auto-publish handle the rest.",
-                },
-                {
-                  title: "Batch once, publish all week",
-                  body: "Film in a single session, upload in bulk, and fill your TikTok content calendar without daily stress.",
-                },
-                {
-                  title: "Desktop-first workflow",
-                  body: "Write longer captions, organize hashtags, and preview posts on a full screen before they go live.",
-                },
-              ].map((item) => (
-                <li key={item.title}>
-                  <h3 className="mb-1 font-display text-lg font-semibold text-white">{item.title}</h3>
-                  <p className="leading-relaxed text-white/75">{item.body}</p>
+          </div>
+          <ul className="mt-10 grid gap-6 sm:grid-cols-3">
+            {[
+              {
+                title: "Who it is for",
+                body: "Solo creators, social managers, and brands that publish TikToks on a weekly rhythm.",
+              },
+              {
+                title: "What you get",
+                body: "A queue, visual calendar, captions on desktop, and auto-publish at chosen times.",
+              },
+              {
+                title: "Why it helps",
+                body: "You film when energy is high and publish when followers are online — without daily scramble.",
+              },
+            ].map((item) => (
+              <li key={item.title} className="border-t border-violet/40 pt-4">
+                <h3 className="mb-2 font-display text-lg font-semibold text-white">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-white/70">{item.body}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="features" className="mb-20">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="mb-3 font-display text-2xl font-bold text-white md:text-3xl">
+                TikTok Scheduler features
+              </h2>
+              <p className="max-w-2xl text-white/80">
+                Everything you need to plan, queue, and publish TikTok videos without juggling drafts
+                across devices.
+              </p>
+            </div>
+            <Link
+              href="/features"
+              className="text-sm font-semibold text-violet-soft underline-offset-4 hover:underline"
+            >
+              Full features page →
+            </Link>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {homeFeatures.map((feature) => (
+              <article key={feature.title} className="border-t border-white/10 pt-5">
+                <h3 className="mb-2 font-display text-xl font-semibold text-white">{feature.title}</h3>
+                <p className="leading-relaxed text-white/75">{feature.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="relative mt-12 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
+            <Image
+              src={BRAND_FEATURE_3}
+              alt="TikTok Scheduler features — auto-publish queue and timeline"
+              fill
+              sizes="100vw"
+              className="object-contain"
+            />
+          </div>
+        </section>
+
+        <section id="how-to-use" className="mb-20">
+          <h2 className="mb-4 font-display text-2xl font-bold text-white md:text-3xl">
+            How to use TikTok Scheduler
+          </h2>
+          <p className="mb-10 max-w-3xl text-lg leading-relaxed text-white/80">
+            From empty calendar to scheduled week in five steps. Prefer a longer walkthrough? See{" "}
+            <Link href="/how-it-works" className="text-violet-soft underline hover:no-underline">
+              how it works
+            </Link>{" "}
+            or the guide on{" "}
+            <Link
+              href="/blog/how-to-schedule-tiktok-posts"
+              className="text-violet-soft underline hover:no-underline"
+            >
+              how to schedule TikTok posts
+            </Link>
+            .
+          </p>
+          <div className="grid gap-10 md:grid-cols-2 md:items-start">
+            <ol className="space-y-8">
+              {howToUseSteps.map((step, index) => (
+                <li key={step.n} className="flex gap-4">
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet to-pink font-display text-sm font-bold text-white">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3 className="mb-1 font-display text-xl font-semibold text-white">{step.t}</h3>
+                    <p className="leading-relaxed text-white/75">{step.d}</p>
+                  </div>
                 </li>
               ))}
-            </ul>
+            </ol>
+            <div className="space-y-6">
+              <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
+                <Image
+                  src={BRAND_FEATURE_4}
+                  alt="How to use TikTok Scheduler — upload, schedule, and publish"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-contain"
+                />
+              </div>
+              <div className="border border-white/10 bg-white/5 p-6">
+                <h3 className="mb-2 font-display text-lg font-semibold text-white">
+                  Quick tip for better results
+                </h3>
+                <p className="leading-relaxed text-white/75">
+                  Film in one batch, then schedule posts for the{" "}
+                  <Link
+                    href="/blog/best-time-to-post-on-tiktok"
+                    className="text-violet-soft underline hover:no-underline"
+                  >
+                    best times to post on TikTok
+                  </Link>{" "}
+                  for your niche. Keep a simple{" "}
+                  <Link
+                    href="/blog/tiktok-content-calendar"
+                    className="text-violet-soft underline hover:no-underline"
+                  >
+                    content calendar
+                  </Link>{" "}
+                  so every peak slot has a video ready.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="mb-20">
           <h2 className="mb-4 font-display text-2xl font-bold text-white md:text-3xl">
-            How TikTok Scheduler works
+            Why creators use a TikTok post scheduler
           </h2>
-          <p className="mb-10 max-w-3xl text-white/80">
-            Four steps from draft to published — the same flow covered in our{" "}
-            <Link href="/how-it-works" className="text-violet-soft underline hover:no-underline">
-              how it works
-            </Link>{" "}
-            guide and the{" "}
-            <Link href="/blog/how-to-schedule-tiktok-posts" className="text-violet-soft underline hover:no-underline">
-              how to schedule TikTok posts
-            </Link>{" "}
-            article.
+          <p className="mb-8 max-w-3xl text-lg leading-relaxed text-white/80">
+            Posting every day is hard when inspiration hits at midnight and your audience wakes at
+            7 a.m. Scheduling turns that mismatch into a repeatable system.
           </p>
-          <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="grid gap-6 sm:grid-cols-3">
             {[
-              { n: "01", t: "Connect", d: "Link your Professional TikTok account securely." },
-              { n: "02", t: "Upload", d: "Add videos, captions, covers, and hashtags." },
-              { n: "03", t: "Schedule", d: "Pick exact times or suggested peak windows." },
-              { n: "04", t: "Publish", d: "Auto-publish from your queue when the slot hits." },
-            ].map((step) => (
-              <li key={step.n} className="border-t border-violet/40 pt-4">
-                <span className="font-display text-sm font-bold text-pink">{step.n}</span>
-                <h3 className="mt-2 font-display text-xl font-semibold text-white">{step.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/70">{step.d}</p>
+              {
+                title: "Post at peak times",
+                body: "Lock slots when followers are online, then let auto-publish handle go-live.",
+              },
+              {
+                title: "Batch once, publish all week",
+                body: "Film in a single session, upload in bulk, and keep the calendar full without daily stress.",
+              },
+              {
+                title: "Desktop-first workflow",
+                body: "Write longer captions, organize hashtags, and preview posts on a full screen.",
+              },
+            ].map((item) => (
+              <li key={item.title} className="border-t border-pink/40 pt-4">
+                <h3 className="mb-2 font-display text-lg font-semibold text-white">{item.title}</h3>
+                <p className="leading-relaxed text-white/75">{item.body}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </section>
 
         <section className="mb-20 grid gap-10 md:grid-cols-2 md:items-center">
           <div>
             <h2 className="mb-4 font-display text-2xl font-bold text-white md:text-3xl">
-              Built for the searches that matter
+              Guides to grow with scheduling
             </h2>
             <p className="mb-6 leading-relaxed text-white/80">
-              People searching for a TikTok scheduler also want best posting times, content calendars,
-              and clarity on TikTok’s native Video Scheduler. We cover those intents in product pages
-              and SERP-backed guides — not filler blogs.
+              Pair the product with practical articles people already search for — timing, calendars,
+              and native vs tool scheduling.
             </p>
             <ul className="space-y-3">
               {[
-                { href: "/features", label: "Product features" },
+                { href: "/features", label: "All product features" },
+                { href: "/pricing", label: "Free plan details" },
+                { href: "/dashboard", label: "Open dashboard" },
                 { href: "/blog/best-time-to-post-on-tiktok", label: "Best time to post on TikTok" },
                 { href: "/blog/tiktok-content-calendar", label: "TikTok content calendar" },
                 { href: "/blog/does-tiktok-have-a-scheduler", label: "Does TikTok have a scheduler?" },
@@ -296,13 +457,13 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
+          <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
             <Image
-              src={BRAND_FEATURE_3}
-              alt="TikTok Scheduler posting timeline and auto-publish queue"
+              src={BRAND_FEATURE_2}
+              alt="TikTok scheduling guides and content calendar resources"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         </section>
@@ -319,8 +480,8 @@ export default function Home() {
           <p className="mx-auto mb-8 max-w-xl text-white/75">
             Start on the free plan, queue your next week of videos, and publish when engagement is highest.
           </p>
-          <CtaButton href="/pricing" ariaLabel="View TikTok Scheduler pricing" icon="arrow">
-            VIEW PLANS
+          <CtaButton href="/dashboard" ariaLabel="Open free TikTok Scheduler dashboard" icon="arrow">
+            OPEN FREE DASHBOARD
           </CtaButton>
         </section>
       </div>

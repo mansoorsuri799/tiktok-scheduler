@@ -33,9 +33,9 @@ const faqs = [
       "Yes. Once a post is approved in your queue and your account permissions allow it, TikTok Scheduler publishes at the scheduled time without a manual tap.",
   },
   {
-    question: "Does TikTok Scheduler support bulk upload?",
+    question: "Does TikTok Scheduler support bulk scheduling?",
     answer:
-      "Paid plans support uploading multiple videos and assigning times in one session — ideal after a batch filming day.",
+      "Yes on the free plan — queue multiple posts with public video URLs and different publish times from the dashboard.",
   },
   {
     question: "Can I edit a scheduled TikTok before it goes live?",
@@ -63,7 +63,7 @@ const features = [
   },
   {
     title: "Bulk scheduling",
-    body: "Upload a batch of videos after a content day and assign times across the week in one pass.",
+    body: "Queue many posts after a content day and assign different publish times — included on the free plan.",
   },
   {
     title: "Account-ready publishing",
@@ -83,14 +83,14 @@ export default function FeaturesPage() {
         content calendar full, and auto-publish without babysitting drafts.
       </p>
 
-      <div className="relative mb-14 aspect-video overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative mb-14 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
         <Image
           src={BRAND_FEATURE_2}
           alt="TikTok Scheduler feature overview — calendar and queue"
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 960px"
-          className="object-cover"
+          className="object-contain"
         />
       </div>
 
@@ -113,13 +113,13 @@ export default function FeaturesPage() {
             still creating native-feeling TikTok content.
           </p>
         </div>
-        <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
+        <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
           <Image
             src={BRAND_FEATURE_4}
             alt="TikTok Scheduler desktop planning workspace"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
       </div>
@@ -127,8 +127,8 @@ export default function FeaturesPage() {
       <FaqSection items={faqs} />
 
       <div className="mt-14 text-center">
-        <CtaButton href="/pricing" ariaLabel="See TikTok Scheduler pricing">
-          SEE PRICING
+        <CtaButton href="/dashboard" ariaLabel="Open free TikTok Scheduler dashboard">
+          START FREE
         </CtaButton>
       </div>
     </div>

@@ -20,9 +20,10 @@ export default function PrivacyPage() {
         </p>
         <h2 className="text-xl font-semibold text-white">Information we collect</h2>
         <p>
-          Account signup may include email and profile details you provide. When you connect TikTok,
-          we receive tokens and profile identifiers needed to schedule and publish on your behalf.
-          If you email us or submit the contact form, we receive the details you choose to send.
+          When you connect TikTok, we store OAuth access/refresh tokens and basic profile details
+          (such as display name and avatar) needed to schedule and publish on your behalf. Tokens stay
+          on our server and are not exposed to the browser. If you email us or submit the contact form,
+          we receive the details you choose to send.
         </p>
         <h2 className="text-xl font-semibold text-white">Analytics and cookies</h2>
         <p>

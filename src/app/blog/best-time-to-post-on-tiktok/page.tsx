@@ -82,13 +82,13 @@ export default function BestTimePage() {
         — lock the winners.
       </p>
 
-      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
         <Image
           src={BRAND_FEATURE_2}
           alt="Peak posting windows visualized on a TikTok content calendar"
           width={1600}
           height={900}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           priority
         />
       </div>

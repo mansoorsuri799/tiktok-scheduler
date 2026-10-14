@@ -41,24 +41,24 @@ const faqs = [
 
 const steps = [
   {
-    title: "Create your TikTok Scheduler account",
-    body: "Sign up on tiktokscheduler.net with your work email. The free plan is enough to learn the queue and publish a starter calendar.",
+    title: "Open the free dashboard",
+    body: "Go to the TikTok Scheduler dashboard — the free plan includes connect, queue, and auto-publish with no paid upgrade.",
   },
   {
     title: "Connect a Professional TikTok account",
-    body: "Authorize Creator or Business access so publishing permissions are available. Personal accounts may need to switch to a Professional profile first.",
+    body: "Authorize Creator or Business access via TikTok Login Kit so publishing permissions are available. Personal accounts may need to switch to a Professional profile first.",
   },
   {
-    title: "Upload videos and write captions",
-    body: "Add MP4 clips, choose covers, and write captions on desktop. Save hashtag sets you reuse for series or product launches.",
+    title: "Add a public video URL and caption",
+    body: "Paste an https MP4 URL TikTok can pull, write your caption, and choose privacy. Queue as many posts as you need on the free plan.",
   },
   {
     title: "Choose dates and peak times",
-    body: "Pick exact timestamps or start from suggested windows. Align launches with the best time to post on TikTok for your niche.",
+    body: "Pick exact timestamps for each post. Align launches with the best time to post on TikTok for your niche.",
   },
   {
-    title: "Approve and auto-publish",
-    body: "Review the queue, approve posts, and let TikTok Scheduler publish when each slot arrives. Edit or reschedule anytime before go-live.",
+    title: "Auto-publish when the slot hits",
+    body: "The publish runner calls TikTok’s Content Posting API at the scheduled time. Cancel queued posts anytime before they go live.",
   },
 ];
 
@@ -95,14 +95,14 @@ export default function HowItWorksPage() {
         .
       </p>
 
-      <div className="relative mb-12 aspect-video overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative mb-12 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
         <Image
           src={BRAND_FEATURE_3}
           alt="Step-by-step TikTok Scheduler workflow from upload to publish"
           fill
           priority
           sizes="(max-width: 896px) 100vw, 896px"
-          className="object-cover"
+          className="object-contain"
         />
       </div>
 
@@ -123,8 +123,8 @@ export default function HowItWorksPage() {
       <FaqSection items={faqs} />
 
       <div className="mt-14 text-center">
-        <CtaButton href="/#start" ariaLabel="Start using TikTok Scheduler">
-          START NOW
+        <CtaButton href="/dashboard" ariaLabel="Open free TikTok Scheduler dashboard">
+          CONNECT TIKTOK
         </CtaButton>
       </div>
     </div>

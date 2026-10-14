@@ -77,13 +77,13 @@ export default function HowToSchedulePage() {
         .
       </p>
 
-      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
         <Image
           src={BRAND_HERO}
           alt="Scheduling TikTok posts on a desktop calendar queue"
           width={1600}
           height={900}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           priority
         />
       </div>
@@ -189,8 +189,8 @@ export default function HowToSchedulePage() {
 
       <div className="mt-12 border-t border-white/10 pt-10 text-center">
         <p className="mb-6 text-white/80">Ready to queue your next week of TikToks?</p>
-        <CtaButton href="/pricing" ariaLabel="Start scheduling TikTok posts">
-          START SCHEDULING
+        <CtaButton href="/dashboard" ariaLabel="Connect TikTok and start scheduling">
+          CONNECT TIKTOK — FREE
         </CtaButton>
       </div>
     </article>

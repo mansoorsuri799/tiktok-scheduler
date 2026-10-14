@@ -72,13 +72,13 @@ export default function ContentCalendarPage() {
         — not another abandoned Notion page.
       </p>
 
-      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-brand-soft">
         <Image
           src={BRAND_FEATURE_3}
           alt="TikTok content calendar with scheduled posts across the week"
           width={1600}
           height={900}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           priority
         />
       </div>
@@ -147,8 +147,8 @@ export default function ContentCalendarPage() {
       <FaqSection items={faqs} />
 
       <div className="mt-12 border-t border-white/10 pt-10 text-center">
-        <CtaButton href="/pricing" ariaLabel="Open TikTok Scheduler calendar plans">
-          OPEN YOUR CALENDAR
+        <CtaButton href="/dashboard" ariaLabel="Open free TikTok Scheduler dashboard">
+          OPEN FREE DASHBOARD
         </CtaButton>
       </div>
     </article>
