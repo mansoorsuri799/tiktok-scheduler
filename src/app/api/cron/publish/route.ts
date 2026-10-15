@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDuePosts, updatePost } from "@/lib/store/db";
+import { getSessionOpenId } from "@/lib/store/session";
 import {
   getValidAccessToken,
   publishVideoPullFromUrl,
@@ -9,8 +10,7 @@ export const dynamic = "force-dynamic";
 
 /**
  * Publish due scheduled posts.
- * Call every minute from a cron job:
- *   Authorization: Bearer $CRON_SECRET
+ * Auth: Authorization Bearer $CRON_SECRET, or a signed-in dashboard session.
  *   GET/POST /api/cron/publish
  */
 export async function GET(request: NextRequest) {
@@ -24,14 +24,24 @@ export async function POST(request: NextRequest) {
 async function runPublish(request: NextRequest) {
   const secret = process.env.CRON_SECRET?.trim();
   const auth = request.headers.get("authorization") || "";
-  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+  const bearer = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+  const openId = await getSessionOpenId();
 
-  // Allow local/dev without secret; require secret when configured
-  if (secret && token !== secret) {
+  const cronOk = Boolean(secret && bearer === secret);
+  const sessionOk = Boolean(openId);
+  // Local/dev: no CRON_SECRET configured → allow; production: cron secret or session
+  const openLocal = !secret;
+
+  if (!openLocal && !cronOk && !sessionOk) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const due = await getDuePosts();
+  let due = await getDuePosts();
+  // Browser "Run due publishes" only processes that user's cookie queue
+  if (sessionOk && !cronOk) {
+    due = due.filter((p) => p.openId === openId);
+  }
+
   const results: Array<{ id: string; ok: boolean; error?: string }> = [];
 
   for (const post of due) {
