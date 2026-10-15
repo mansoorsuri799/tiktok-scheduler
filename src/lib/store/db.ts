@@ -26,6 +26,11 @@ export type ScheduledPost = {
     | "MUTUAL_FOLLOW_FRIENDS"
     | "FOLLOWER_OF_CREATOR"
     | "SELF_ONLY";
+  allowComment: boolean;
+  allowDuet: boolean;
+  allowStitch: boolean;
+  brandOrganic: boolean;
+  brandedContent: boolean;
   scheduledAt: string;
   status: "scheduled" | "publishing" | "published" | "failed";
   publishId?: string;

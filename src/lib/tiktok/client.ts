@@ -8,6 +8,8 @@ import {
   TIKTOK_TOKEN_URL,
   TIKTOK_USER_INFO_URL,
   TIKTOK_VIDEO_INIT_URL,
+  TIKTOK_CREATOR_INFO_URL,
+  TIKTOK_PUBLISH_STATUS_URL,
 } from "@/lib/tiktok/config";
 import type { TikTokAccount } from "@/lib/store/db";
 import { getAccount, upsertAccount } from "@/lib/store/db";
@@ -157,25 +159,92 @@ export async function revokeToken(accessToken: string): Promise<void> {
   });
 }
 
-export async function publishVideoPullFromUrl(opts: {
+export type CreatorInfo = {
+  creatorAvatarUrl: string;
+  creatorUsername: string;
+  creatorNickname: string;
+  privacyLevelOptions: string[];
+  commentDisabled: boolean;
+  duetDisabled: boolean;
+  stitchDisabled: boolean;
+  maxVideoPostDurationSec: number;
+};
+
+export async function queryCreatorInfo(accessToken: string): Promise<CreatorInfo> {
+  const res = await fetch(TIKTOK_CREATOR_INFO_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify({}),
+    cache: "no-store",
+  });
+
+  const json = (await res.json()) as {
+    data?: {
+      creator_avatar_url?: string;
+      creator_username?: string;
+      creator_nickname?: string;
+      privacy_level_options?: string[];
+      comment_disabled?: boolean;
+      duet_disabled?: boolean;
+      stitch_disabled?: boolean;
+      max_video_post_duration_sec?: number;
+    };
+    error?: { code?: string; message?: string };
+  };
+
+  if (!res.ok || !json.data) {
+    throw new Error(
+      json.error?.message ||
+        json.error?.code ||
+        "Could not load TikTok creator info. Reconnect with video.publish scope."
+    );
+  }
+
+  return {
+    creatorAvatarUrl: json.data.creator_avatar_url || "",
+    creatorUsername: json.data.creator_username || "",
+    creatorNickname: json.data.creator_nickname || "TikTok creator",
+    privacyLevelOptions: json.data.privacy_level_options || [],
+    commentDisabled: Boolean(json.data.comment_disabled),
+    duetDisabled: Boolean(json.data.duet_disabled),
+    stitchDisabled: Boolean(json.data.stitch_disabled),
+    maxVideoPostDurationSec: json.data.max_video_post_duration_sec || 600,
+  };
+}
+
+export type PublishVideoOptions = {
   accessToken: string;
   title: string;
   videoUrl: string;
   privacyLevel: string;
-}): Promise<{ publishId: string }> {
+  allowComment: boolean;
+  allowDuet: boolean;
+  allowStitch: boolean;
+  brandOrganic: boolean;
+  brandedContent: boolean;
+};
+
+export async function publishVideoPullFromUrl(
+  opts: PublishVideoOptions
+): Promise<{ publishId: string }> {
   const res = await fetch(TIKTOK_VIDEO_INIT_URL, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${opts.accessToken}`,
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify({
       post_info: {
         title: opts.title.slice(0, 2200),
         privacy_level: opts.privacyLevel,
-        disable_duet: false,
-        disable_comment: false,
-        disable_stitch: false,
+        disable_comment: !opts.allowComment,
+        disable_duet: !opts.allowDuet,
+        disable_stitch: !opts.allowStitch,
+        brand_organic_toggle: opts.brandOrganic,
+        brand_content_toggle: opts.brandedContent,
         video_cover_timestamp_ms: 1000,
       },
       source_info: {
@@ -198,4 +267,27 @@ export async function publishVideoPullFromUrl(opts: {
   }
 
   return { publishId: json.data.publish_id };
+}
+
+export async function fetchPublishStatus(
+  accessToken: string,
+  publishId: string
+): Promise<string> {
+  const res = await fetch(TIKTOK_PUBLISH_STATUS_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify({ publish_id: publishId }),
+    cache: "no-store",
+  });
+  const json = (await res.json()) as {
+    data?: { status?: string };
+    error?: { message?: string };
+  };
+  if (!res.ok) {
+    throw new Error(json.error?.message || "Could not fetch publish status");
+  }
+  return json.data?.status || "UNKNOWN";
 }

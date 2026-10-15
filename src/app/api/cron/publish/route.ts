@@ -53,6 +53,11 @@ async function runPublish(request: NextRequest) {
         title: post.title,
         videoUrl: post.videoUrl,
         privacyLevel: post.privacyLevel,
+        allowComment: post.allowComment ?? true,
+        allowDuet: post.allowDuet ?? false,
+        allowStitch: post.allowStitch ?? false,
+        brandOrganic: post.brandOrganic ?? false,
+        brandedContent: post.brandedContent ?? false,
       });
       await updatePost(post.id, {
         status: "published",

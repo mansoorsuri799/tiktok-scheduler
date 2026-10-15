@@ -6,6 +6,10 @@ export const TIKTOK_REVOKE_URL = "https://open.tiktokapis.com/v2/oauth/revoke/";
 export const TIKTOK_USER_INFO_URL = "https://open.tiktokapis.com/v2/user/info/";
 export const TIKTOK_VIDEO_INIT_URL =
   "https://open.tiktokapis.com/v2/post/publish/video/init/";
+export const TIKTOK_CREATOR_INFO_URL =
+  "https://open.tiktokapis.com/v2/post/publish/creator_info/query/";
+export const TIKTOK_PUBLISH_STATUS_URL =
+  "https://open.tiktokapis.com/v2/post/publish/status/fetch/";
 
 /** Free plan: one connected account, unlimited queued posts on this product. */
 export const FREE_PLAN = {
